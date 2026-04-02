@@ -1,0 +1,5 @@
+{
+  "name": "Wani Bisen Portfolio Backend",
+  "description": "Production-ready backend for Wani Bisen's personal website, featuring Supabase and Resend integration.",
+  "requestFramePermissions": []
+}
