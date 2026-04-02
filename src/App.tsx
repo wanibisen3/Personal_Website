@@ -231,11 +231,13 @@ export default function App() {
 
         {/* Contact Section */}
         <section id="contact" className="pt-12">
-          <div className="p-16 rounded-[3rem] bg-white border border-[#FADBD8]/50 shadow-2xl shadow-[#D97B66]/10 relative overflow-hidden">
+          <div className="p-10 md:p-14 rounded-[3rem] bg-white border border-[#FADBD8]/50 shadow-2xl shadow-[#D97B66]/10 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#FADBD8]/10 rounded-full -mr-32 -mt-32 opacity-50" />
             <div className="max-w-xl relative">
-              <div className="flex flex-col md:flex-row md:items-center gap-4 mb-8">
-                <Mail className="text-[#D97B66] shrink-0" size={36} />
+              <div className="mb-8 block">
+                <div className="p-3 inline-flex rounded-2xl bg-[#FADBD8]/30 border border-[#D97B66]/20 shadow-sm mb-6">
+                  <Mail className="text-[#D97B66]" size={32} />
+                </div>
                 <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-tight">Looking to build or scale AI products? Let's connect.</h2>
               </div>
               <p className="text-xl text-slate-500 mb-12 font-medium">
