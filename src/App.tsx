@@ -137,12 +137,12 @@ export default function App() {
               <motion.div 
                 key={idx}
                 whileHover={{ y: -8 }}
-                className="p-6 md:p-10 rounded-2xl md:rounded-3xl bg-white border border-[#FADBD8]/50 shadow-xl shadow-[#D97B66]/5 hover:border-[#D97B66]/30 transition-all group relative overflow-hidden"
+                className="p-6 md:p-10 rounded-2xl md:rounded-3xl bg-white border border-[#FADBD8]/50 shadow-xl shadow-[#D97B66]/5 hover:border-[#D97B66]/30 transition-all group relative overflow-hidden flex flex-col"
               >
-                <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity pointer-events-none">
                   <Code size={80} className="text-[#D97B66]" />
                 </div>
-                <div className="flex justify-between items-start mb-6 md:mb-8">
+                <div className="flex justify-between items-start mb-6 md:mb-8 relative z-10">
                   <h3 className="text-xl md:text-2xl font-bold text-slate-900 group-hover:text-[#D97B66] transition-colors pr-4">
                     {proj.title}
                   </h3>
@@ -151,7 +151,7 @@ export default function App() {
                       href={proj.link} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 hover:bg-[#FADBD8]/50 text-slate-600 hover:text-[#D97B66] transition-all font-bold text-sm shrink-0 border border-transparent hover:border-[#D97B66]/20"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 hover:bg-[#FADBD8]/50 text-slate-600 hover:text-[#D97B66] transition-all font-bold text-sm shrink-0 border border-transparent hover:border-[#D97B66]/20 relative z-10"
                     >
                       <span className="hidden sm:inline tracking-wide">View Project</span>
                       <ExternalLink size={18} strokeWidth={2.5} />
@@ -245,8 +245,8 @@ export default function App() {
         {/* Contact Section */}
         <section id="contact" className="pt-8 md:pt-12">
           <div className="p-6 md:p-14 rounded-[2rem] md:rounded-[3rem] bg-white border border-[#FADBD8]/50 shadow-2xl shadow-[#D97B66]/10 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#FADBD8]/10 rounded-full -mr-32 -mt-32 opacity-50" />
-            <div className="max-w-xl relative">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-[#FADBD8]/10 rounded-full -mr-32 -mt-32 opacity-50 pointer-events-none" />
+            <div className="max-w-xl relative z-10">
               <div className="mb-8 block">
                 <div className="p-3 inline-flex rounded-2xl bg-[#FADBD8]/30 border border-[#D97B66]/20 shadow-sm mb-6">
                   <Mail className="text-[#D97B66]" size={32} />
