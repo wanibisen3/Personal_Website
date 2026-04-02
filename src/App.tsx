@@ -119,20 +119,20 @@ export default function App() {
           </div>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="p-8 rounded-3xl bg-white border border-[#FADBD8]/50 shadow-sm hover:shadow-xl hover:shadow-[#D97B66]/5 transition-all">
-              <h3 className="text-xl font-bold text-slate-900 mb-3 tracking-tight">Outcomes over aesthetics</h3>
-              <p className="text-slate-500 leading-relaxed">AI products only succeed when tied directly to real workflows and measurable business problems, not just cool tech.</p>
+              <h3 className="text-xl font-bold text-slate-900 mb-3 tracking-tight">Outcomes over features</h3>
+              <p className="text-slate-500 leading-relaxed">Technology alone isn't a product. AI systems only succeed when they natively solve defined business problems and integrate into real workflows.</p>
             </div>
             <div className="p-8 rounded-3xl bg-white border border-[#FADBD8]/50 shadow-sm hover:shadow-xl hover:shadow-[#D97B66]/5 transition-all">
               <h3 className="text-xl font-bold text-slate-900 mb-3 tracking-tight">Bridging the chasm</h3>
-              <p className="text-slate-500 leading-relaxed">I naturally translate raw technical realities into clear go-to-market strategies and exec-level decisions.</p>
+              <p className="text-slate-500 leading-relaxed">I translate raw technical constraints into clear go-to-market strategies, enabling executive leadership to make informed technology investments.</p>
             </div>
             <div className="p-8 rounded-3xl bg-white border border-[#FADBD8]/50 shadow-sm hover:shadow-xl hover:shadow-[#D97B66]/5 transition-all">
               <h3 className="text-xl font-bold text-slate-900 mb-3 tracking-tight">Designing for scale</h3>
-              <p className="text-slate-500 leading-relaxed">Rooted in enterprise engineering, I care deeply about the underlying system architecture as much as the front-end user experience.</p>
+              <p className="text-slate-500 leading-relaxed">Rooted in a computer science foundation, I prioritize system architecture and data integrity equally alongside the front-end user experience.</p>
             </div>
             <div className="p-8 rounded-3xl bg-white border border-[#FADBD8]/50 shadow-sm hover:shadow-xl hover:shadow-[#D97B66]/5 transition-all">
               <h3 className="text-xl font-bold text-slate-900 mb-3 tracking-tight">Navigating ambiguity</h3>
-              <p className="text-slate-500 leading-relaxed">Shaping emerging tech into intuitive products requires rigorous, structured thinking, honed from deploying massive 0-to-1 launches.</p>
+              <p className="text-slate-500 leading-relaxed">Shaping emerging technologies into market-ready products requires structured, systematic thinking—honed through executing massive 0-to-1 product launches.</p>
             </div>
           </div>
         </section>

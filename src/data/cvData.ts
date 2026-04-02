@@ -31,8 +31,8 @@ export const cvData = {
       role: "Senior Software Development Engineer",
       period: "2022 - 2024",
       highlights: [
-        "Architected and scaled enterprise-grade ETL data pipelines, directly increasing structural reliability and data throughput for Fortune 500 clients.",
-        "Drove critical database performance optimizations, translating technical enhancements into improved product stickiness and operational stability.",
+        "Architected enterprise-grade ETL data pipelines, increasing structural reliability and throughput to enable Fortune 500 clients to scale their strategic analytics.",
+        "Spearheaded critical backend performance optimizations, translating deep engineering enhancements into greater operational stability and product stickiness.",
         "Transitioned into technical leadership by mentoring engineering teams and establishing architectural standards that significantly accelerated feature delivery cycles."
       ]
     },
@@ -59,21 +59,21 @@ export const cvData = {
   projects: [
     {
       title: "Product OS",
-      description: "Engineering execution often misaligns with product strategy. I architected a context-driven framework that enables AI agents to operate as expert PMs and system architects. I defined the overarching architecture, decoupling strategy from execution, resulting in a scalable operating system that natively aligns technical workflows with business goals.",
+      description: "Engineering execution often misaligns with product strategy. I built a context-driven framework that enables AI agents to operate as structural PMs, effectively decoupling strategy from execution. The result is a scalable operating system that natively aligns technical development with core business goals.",
       status: "Active (2026 - Present)",
       tags: ["AI", "Workflow", "LLM Orchestration"],
       link: "https://github.com/wanibisen3/ai-product-os"
     },
     {
       title: "Executive AI Decision Support",
-      description: "Non-technical executives struggle to distill actionable signal from AI noise. I designed and developed a decision-support product that translates raw AI developments into high-impact business strategy. The platform empowers leadership teams to confidently assess market opportunities and direct technology investments with clarity.",
+      description: "Non-technical executives struggle to distill actionable signal from rapid technology cycles. I designed a decision-support platform that translates emerging data trends into high-impact business strategy. The product empowers leadership teams to confidently assess market opportunities and allocate engineering investments with clarity.",
       status: "Active (2026 - Present)",
       tags: ["AI", "Product Management", "Strategy"],
       link: "https://ai-signals-for-leaders.vercel.app/"
     },
     {
       title: "Cross-border Payments Intelligence",
-      description: "International payment routes are historically bottlenecked by compliance and opacity. I am leading the development of an intelligence layer to optimize transaction paths using contextual AI. By building this system, I am providing fintech infrastructures with scalable solutions for margin optimization and predictable routing.",
+      description: "International payment routes are historically bottlenecked by compliance and opacity. I am shaping the development of an intelligence layer that optimizes transaction paths using predictive algorithms. This system provides global fintech infrastructures with a scalable basis for margin optimization and automated routing.",
       status: "Active (2026 - Present)",
       tags: ["Fintech", "Intelligence", "Payments"],
       link: "https://moneyflow-rho.vercel.app/"
