@@ -103,9 +103,9 @@ app.post("/api/contact", async (req, res) => {
     }
 
     res.status(200).json({ success: true, message: "Message processed." });
-  } catch (error) {
+  } catch (error: any) {
     console.error("Contact Error:", error);
-    res.status(400).json({ success: false, error: "Failed to send message." });
+    res.status(400).json({ success: false, error: "Failed to send message: " + (error?.message || String(error)) });
   }
 });
 
