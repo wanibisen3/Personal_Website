@@ -96,22 +96,49 @@ export default function App() {
           animate={{ opacity: 1, y: 0 }}
           className="space-y-6"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FADBD8]/30 border border-[#D97B66]/20 text-[#D97B66] text-sm font-semibold">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FADBD8]/30 border border-[#D97B66]/20 text-[#D97B66] text-sm font-semibold tracking-wide">
             <Terminal size={14} />
-            <span>Product Leader in AI & Data | Ex-Fivetran SDE | INSEAD & Wharton MBA</span>
+            <span>Ex-Fivetran | INSEAD MBA | AI Product Strategy | Computer Science Foundation</span>
           </div>
-          <h1 className="text-6xl md:text-8xl font-black tracking-tight text-slate-900">
+          <h1 className="text-7xl md:text-9xl font-black tracking-tight text-slate-900 mt-4 mb-6">
             Wani <span className="text-[#D97B66]">Bisen</span>
           </h1>
-          <p className="text-2xl text-slate-600 max-w-2xl leading-relaxed font-medium">
-            I bridge technical depth with business strategy to build scalable, AI-driven products. Turning complex technologies into measurable outcomes and market-leading user experiences.
+          <p className="text-2xl md:text-3xl text-slate-500 max-w-3xl leading-relaxed font-semibold">
+            Building scalable, AI-driven products at the intersection of deep technology and business strategy. I turn complex architectures into measurable outcomes and market-leading user experiences.
           </p>
         </motion.div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-6 space-y-40 pb-32">
-        {/* Projects Section - NOW FIRST */}
-        <section id="projects">
+      <main className="max-w-5xl mx-auto px-6 pb-32 pt-16">
+        
+        {/* My Approach Section */}
+        <section id="approach" className="mb-40">
+          <div className="mb-12">
+            <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight">How I Build Products</h2>
+            <p className="text-xl text-slate-500 font-medium mt-4">Core principles driving my product leadership.</p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="p-8 rounded-3xl bg-white border border-[#FADBD8]/50 shadow-sm hover:shadow-xl hover:shadow-[#D97B66]/5 transition-all">
+              <h3 className="text-xl font-bold text-slate-900 mb-3 tracking-tight">Outcomes over aesthetics</h3>
+              <p className="text-slate-500 leading-relaxed">AI products only succeed when tied directly to real workflows and measurable business problems, not just cool tech.</p>
+            </div>
+            <div className="p-8 rounded-3xl bg-white border border-[#FADBD8]/50 shadow-sm hover:shadow-xl hover:shadow-[#D97B66]/5 transition-all">
+              <h3 className="text-xl font-bold text-slate-900 mb-3 tracking-tight">Bridging the chasm</h3>
+              <p className="text-slate-500 leading-relaxed">I naturally translate raw technical realities into clear go-to-market strategies and exec-level decisions.</p>
+            </div>
+            <div className="p-8 rounded-3xl bg-white border border-[#FADBD8]/50 shadow-sm hover:shadow-xl hover:shadow-[#D97B66]/5 transition-all">
+              <h3 className="text-xl font-bold text-slate-900 mb-3 tracking-tight">Designing for scale</h3>
+              <p className="text-slate-500 leading-relaxed">Rooted in enterprise engineering, I care deeply about the underlying system architecture as much as the front-end user experience.</p>
+            </div>
+            <div className="p-8 rounded-3xl bg-white border border-[#FADBD8]/50 shadow-sm hover:shadow-xl hover:shadow-[#D97B66]/5 transition-all">
+              <h3 className="text-xl font-bold text-slate-900 mb-3 tracking-tight">Navigating ambiguity</h3>
+              <p className="text-slate-500 leading-relaxed">Shaping emerging tech into intuitive products requires rigorous, structured thinking, honed from deploying massive 0-to-1 launches.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Projects Section - NOW SECOND */}
+        <section id="projects" className="mb-40">
           <div className="flex items-center gap-3 mb-16">
             <div className="p-3 rounded-2xl bg-[#FADBD8]/30 border border-[#D97B66]/20 shadow-sm">
               <Code className="text-[#D97B66]" size={28} />
@@ -167,7 +194,7 @@ export default function App() {
             <div className="p-3 rounded-2xl bg-[#FADBD8]/30 border border-[#D97B66]/20 shadow-sm">
               <Briefcase className="text-[#D97B66]" size={28} />
             </div>
-            <h2 className="text-4xl font-black text-slate-900">Leadership & Career Trajectory</h2>
+            <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight">Leadership & Experience</h2>
           </div>
           
           <div className="space-y-16">
@@ -207,12 +234,12 @@ export default function App() {
           <div className="p-16 rounded-[3rem] bg-white border border-[#FADBD8]/50 shadow-2xl shadow-[#D97B66]/10 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#FADBD8]/10 rounded-full -mr-32 -mt-32 opacity-50" />
             <div className="max-w-xl relative">
-              <div className="flex items-center gap-3 mb-8">
-                <Mail className="text-[#D97B66]" size={28} />
-                <h2 className="text-4xl font-black text-slate-900">Get in Touch</h2>
+              <div className="flex flex-col md:flex-row md:items-center gap-4 mb-8">
+                <Mail className="text-[#D97B66] shrink-0" size={36} />
+                <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-tight">Looking to build or scale AI products? Let's connect.</h2>
               </div>
-              <p className="text-xl text-slate-600 mb-12 font-medium">
-                Have a project in mind or want to discuss AI strategy? Drop me a message below.
+              <p className="text-xl text-slate-500 mb-12 font-medium">
+                Drop me a message below.
               </p>
 
               <form onSubmit={handleContact} className="space-y-8">
