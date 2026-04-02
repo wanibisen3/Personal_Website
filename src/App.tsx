@@ -109,10 +109,10 @@ export default function App() {
         </motion.div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-6 pb-32 pt-16">
+      <main className="max-w-5xl mx-auto px-6 pb-24 pt-4">
         
         {/* My Approach Section */}
-        <section id="approach" className="mb-40">
+        <section id="approach" className="mb-24">
           <div className="mb-12">
             <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight">How I Build Products</h2>
             <p className="text-xl text-slate-500 font-medium mt-4">Core principles driving my product leadership.</p>
@@ -138,7 +138,7 @@ export default function App() {
         </section>
 
         {/* Projects Section - NOW SECOND */}
-        <section id="projects" className="mb-40">
+        <section id="projects" className="mb-24">
           <div className="flex items-center gap-3 mb-16">
             <div className="p-3 rounded-2xl bg-[#FADBD8]/30 border border-[#D97B66]/20 shadow-sm">
               <Code className="text-[#D97B66]" size={28} />
