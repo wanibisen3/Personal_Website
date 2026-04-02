@@ -79,7 +79,7 @@ app.post("/api/contact", async (req, res) => {
     }
 
     if (resend) {
-      await resend.emails.send({
+      const emailResult = await resend.emails.send({
         from: "Portfolio <onboarding@resend.dev>",
         to: process.env.CONTACT_EMAIL_RECIPIENT || "wanibisen@yahoo.com",
         subject: `New Contact Form: ${validatedData.subject || "No Subject"}`,
@@ -90,6 +90,14 @@ app.post("/api/contact", async (req, res) => {
           <p>${validatedData.message}</p>
         `,
       });
+      
+      if (emailResult.error) {
+        console.error("Resend API rejected the email:", emailResult.error);
+        return res.status(500).json({ 
+          success: false, 
+          error: "Email delivery failed: Resend restrictions likely blocked the recipient email."
+        });
+      }
     } else {
       console.warn("Skipping email: Resend not configured.");
     }
