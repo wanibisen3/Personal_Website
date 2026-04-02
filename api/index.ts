@@ -81,7 +81,7 @@ app.post("/api/contact", async (req, res) => {
     if (resend) {
       await resend.emails.send({
         from: "Portfolio <onboarding@resend.dev>",
-        to: process.env.CONTACT_EMAIL_RECIPIENT || "wanibisen3@gmail.com",
+        to: process.env.CONTACT_EMAIL_RECIPIENT || "wanibisen@yahoo.com",
         subject: `New Contact Form: ${validatedData.subject || "No Subject"}`,
         html: `
           <h3>New Message from ${validatedData.name}</h3>
