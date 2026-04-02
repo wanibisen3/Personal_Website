@@ -5,7 +5,7 @@ import rateLimit from "express-rate-limit";
 import { createClient } from "@supabase/supabase-js";
 import { Resend } from "resend";
 import { z } from "zod";
-import { cvData } from "../src/data/cvData.ts";
+import { cvData } from "../src/data/cvData.js";
 import dotenv from "dotenv";
 
 dotenv.config();
