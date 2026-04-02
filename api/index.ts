@@ -90,7 +90,6 @@ app.post("/api/contact", async (req, res) => {
           <p>${validatedData.message}</p>
         `,
       });
-      
       if (emailResult.error) {
         console.error("Resend API rejected the email:", emailResult.error);
         return res.status(500).json({ 
@@ -100,6 +99,7 @@ app.post("/api/contact", async (req, res) => {
       }
     } else {
       console.warn("Skipping email: Resend not configured.");
+      return res.status(500).json({ success: false, error: "Server Error: RESEND_API_KEY is not configured on Vercel." });
     }
 
     res.status(200).json({ success: true, message: "Message processed." });
