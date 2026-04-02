@@ -14,7 +14,8 @@ import {
   ExternalLink, 
   CheckCircle2,
   AlertCircle,
-  Terminal
+  Terminal,
+  Linkedin
 } from "lucide-react";
 
 interface Experience {
@@ -100,9 +101,20 @@ export default function App() {
             <Terminal size={14} className="shrink-0 mt-0.5 md:mt-0" />
             <span>INSEAD x Wharton MBA | AI Product Strategy | Computer Science Foundation</span>
           </div>
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tight text-slate-900 mt-4 mb-6 leading-none">
-            Wani <span className="text-[#D97B66]">Bisen</span>
-          </h1>
+          <div className="flex flex-wrap items-center gap-4 md:gap-6 mt-4 mb-6">
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tight text-slate-900 leading-none">
+              Wani <span className="text-[#D97B66]">Bisen</span>
+            </h1>
+            <a 
+              href="https://www.linkedin.com/in/wanibisen/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 md:p-4 rounded-full bg-[#0A66C2]/10 hover:bg-[#0A66C2]/20 border border-[#0A66C2]/20 text-[#0A66C2] transition-all shadow-sm hover:shadow-md mt-1 md:mt-2"
+              title="LinkedIn Profile"
+            >
+              <Linkedin size={32} className="md:w-10 md:h-10 lg:w-12 lg:h-12" strokeWidth={2} />
+            </a>
+          </div>
           <p className="text-xl md:text-2xl text-slate-500 max-w-3xl leading-relaxed font-medium">
             Building scalable, AI-driven products at the intersection of deep technology and business strategy. I turn complex architectures into measurable outcomes and market-leading user experiences.
           </p>
@@ -139,9 +151,10 @@ export default function App() {
                       href={proj.link} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="p-2 rounded-full bg-slate-100 hover:bg-[#FADBD8]/30 text-slate-600 hover:text-[#D97B66] transition-all"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 hover:bg-[#FADBD8]/50 text-slate-600 hover:text-[#D97B66] transition-all font-bold text-sm shrink-0 border border-transparent hover:border-[#D97B66]/20"
                     >
-                      <ExternalLink size={20} />
+                      <span className="hidden sm:inline tracking-wide">View Project</span>
+                      <ExternalLink size={18} strokeWidth={2.5} />
                     </a>
                   ) : (
                     <ExternalLink size={20} className="text-slate-300" />
