@@ -143,7 +143,7 @@ export default function App() {
             <div className="p-3 rounded-2xl bg-[#FADBD8]/30 border border-[#D97B66]/20 shadow-sm">
               <Code className="text-[#D97B66]" size={28} />
             </div>
-            <h2 className="text-4xl font-black text-slate-900">Strategic Product Portfolio</h2>
+            <h2 className="text-4xl font-black text-slate-900">Product Portfolio</h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
