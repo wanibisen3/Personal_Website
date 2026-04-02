@@ -98,7 +98,7 @@ export default function App() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FADBD8]/30 border border-[#D97B66]/20 text-[#D97B66] text-sm font-semibold tracking-wide">
             <Terminal size={14} />
-            <span>Ex-Fivetran | INSEAD MBA | AI Product Strategy | Computer Science Foundation</span>
+            <span>INSEAD x Wharton MBA | AI Product Strategy | Computer Science Foundation</span>
           </div>
           <h1 className="text-7xl md:text-9xl font-black tracking-tight text-slate-900 mt-4 mb-6">
             Wani <span className="text-[#D97B66]">Bisen</span>
