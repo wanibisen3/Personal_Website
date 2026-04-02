@@ -11,9 +11,9 @@ export const cvData = {
       role: "MBA - Skilling up in Business & Strategy",
       period: "2024 - 2025",
       highlights: [
-        "Focused on AI strategy, product management, and global business operations.",
-        "Collaborated on cross-border fintech and intelligence projects.",
-        "Leveraged dual-campus insights to bridge technology and business leadership."
+        "Specializing in AI strategy, product leadership, and scaling global business operations.",
+        "Leading cross-functional projects in borderless fintech and market intelligence to identify scalable market opportunities.",
+        "Bridging computer science fundamentals with advanced business frameworks to drive technology-led corporate growth."
       ]
     },
     {
@@ -21,9 +21,9 @@ export const cvData = {
       role: "Product Manager - AI and LLMs",
       period: "Apr 2025 - Sep 2025",
       highlights: [
-        "Led product strategy for AI-driven privacy solutions.",
-        "Spearheaded LLM integration for automated data classification.",
-        "Collaborated with cross-functional teams to define roadmap for privacy-preserving AI."
+        "Definitively owned the product strategy and execution for AI-driven privacy solutions from 0 to 1.",
+        "Directed cross-functional integration of LLMs for automated data classification, aligning technical capabilities with strict business privacy constraints.",
+        "Partnered with executive stakeholders to position privacy-preserving AI products for sustainable market entry."
       ]
     },
     {
@@ -31,9 +31,9 @@ export const cvData = {
       role: "Senior Software Development Engineer",
       period: "2022 - 2024",
       highlights: [
-        "Architected scalable data pipelines for enterprise-grade ETL processes.",
-        "Optimized database performance and reliability for high-throughput data ingestion.",
-        "Mentored junior engineers and led technical design reviews."
+        "Led technical design and architecture of scalable data pipelines, enabling enterprise-grade ETL capabilities and high-throughput data ingestion.",
+        "Orchestrated critical database performance optimizations, directly impacting product reliability for strategic business operations.",
+        "Managed and mentored a team of junior engineers, establishing architectural standards to accelerate product delivery cycles."
       ]
     },
     {
@@ -41,9 +41,9 @@ export const cvData = {
       role: "Senior Software Development Engineer in Test - Team Lead",
       period: "2018 - 2022",
       highlights: [
-        "Led a team of 10+ engineers in building automated testing frameworks.",
-        "Reduced regression testing time by 60% through CI/CD optimization.",
-        "Implemented quality gates for large-scale pharmaceutical analytics platforms."
+        "Directed a cross-functional team of 10+ engineers to build and scale automated testing frameworks across global platforms.",
+        "Accelerated product release cycles by 60% through CI/CD pipeline automation and strategic infrastructure delivery.",
+        "Partnered with product leadership to implement enterprise-wide quality gates for large-scale pharmaceutical analytics products."
       ]
     },
     {

@@ -98,14 +98,13 @@ export default function App() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FADBD8]/30 border border-[#D97B66]/20 text-[#D97B66] text-sm font-semibold">
             <Terminal size={14} />
-            <span>Product Manager & SDE</span>
+            <span>Product Leader in AI & Data | Ex-Fivetran SDE | INSEAD & Wharton MBA</span>
           </div>
           <h1 className="text-6xl md:text-8xl font-black tracking-tight text-slate-900">
             Wani <span className="text-[#D97B66]">Bisen</span>
           </h1>
           <p className="text-2xl text-slate-600 max-w-2xl leading-relaxed font-medium">
-            Building the next generation of AI-driven products. 
-            Specializing in LLM orchestration, data integrity, and cross-border payment intelligence.
+            I bridge technical depth with business strategy to build scalable, AI-driven products. Turning complex technologies into measurable outcomes and market-leading user experiences.
           </p>
         </motion.div>
       </header>
@@ -117,7 +116,7 @@ export default function App() {
             <div className="p-3 rounded-2xl bg-[#FADBD8]/30 border border-[#D97B66]/20 shadow-sm">
               <Code className="text-[#D97B66]" size={28} />
             </div>
-            <h2 className="text-4xl font-black text-slate-900">Product Portfolio</h2>
+            <h2 className="text-4xl font-black text-slate-900">Strategic Product Portfolio</h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -168,7 +167,7 @@ export default function App() {
             <div className="p-3 rounded-2xl bg-[#FADBD8]/30 border border-[#D97B66]/20 shadow-sm">
               <Briefcase className="text-[#D97B66]" size={28} />
             </div>
-            <h2 className="text-4xl font-black text-slate-900">Career Trajectory</h2>
+            <h2 className="text-4xl font-black text-slate-900">Leadership & Career Trajectory</h2>
           </div>
           
           <div className="space-y-16">
