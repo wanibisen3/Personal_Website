@@ -90,17 +90,17 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#FFF9F6] text-slate-800 font-sans selection:bg-[#FADBD8]">
       {/* Header */}
-      <header className="max-w-5xl mx-auto px-6 pt-24 pb-12">
+      <header className="max-w-5xl mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-8 md:pb-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="space-y-6"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FADBD8]/30 border border-[#D97B66]/20 text-[#D97B66] text-sm font-semibold tracking-wide">
-            <Terminal size={14} />
+          <div className="inline-flex items-start md:items-center gap-2 px-4 py-2 md:py-1.5 rounded-2xl md:rounded-full bg-[#FADBD8]/30 border border-[#D97B66]/20 text-[#D97B66] text-sm font-semibold tracking-wide">
+            <Terminal size={14} className="shrink-0 mt-0.5 md:mt-0" />
             <span>INSEAD x Wharton MBA | AI Product Strategy | Computer Science Foundation</span>
           </div>
-          <h1 className="text-7xl md:text-9xl font-black tracking-tight text-slate-900 mt-4 mb-6">
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tight text-slate-900 mt-4 mb-6 leading-none">
             Wani <span className="text-[#D97B66]">Bisen</span>
           </h1>
           <p className="text-xl md:text-2xl text-slate-500 max-w-3xl leading-relaxed font-medium">
@@ -109,7 +109,7 @@ export default function App() {
         </motion.div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-6 pb-16 pt-0">
+      <main className="max-w-5xl mx-auto px-5 md:px-8 pb-16 pt-0">
         
         {/* Projects Section - NOW FIRST */}
         <section id="projects" className="mb-16">
@@ -120,18 +120,18 @@ export default function App() {
             <h2 className="text-4xl font-black text-slate-900">Product Portfolio</h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
             {projects.map((proj, idx) => (
               <motion.div 
                 key={idx}
                 whileHover={{ y: -8 }}
-                className="p-10 rounded-3xl bg-white border border-[#FADBD8]/50 shadow-xl shadow-[#D97B66]/5 hover:border-[#D97B66]/30 transition-all group relative overflow-hidden"
+                className="p-6 md:p-10 rounded-2xl md:rounded-3xl bg-white border border-[#FADBD8]/50 shadow-xl shadow-[#D97B66]/5 hover:border-[#D97B66]/30 transition-all group relative overflow-hidden"
               >
                 <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
                   <Code size={80} className="text-[#D97B66]" />
                 </div>
-                <div className="flex justify-between items-start mb-8">
-                  <h3 className="text-2xl font-bold text-slate-900 group-hover:text-[#D97B66] transition-colors">
+                <div className="flex justify-between items-start mb-6 md:mb-8">
+                  <h3 className="text-xl md:text-2xl font-bold text-slate-900 group-hover:text-[#D97B66] transition-colors pr-4">
                     {proj.title}
                   </h3>
                   {proj.link ? (
@@ -168,22 +168,22 @@ export default function App() {
             <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight">How I Build Products</h2>
             <p className="text-xl text-slate-500 font-medium mt-4">Core principles driving my product leadership.</p>
           </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="p-8 rounded-3xl bg-white border border-[#FADBD8]/50 shadow-sm hover:shadow-xl hover:shadow-[#D97B66]/5 transition-all">
-              <h3 className="text-xl font-bold text-slate-900 mb-3 tracking-tight">Outcomes over features</h3>
-              <p className="text-slate-500 leading-relaxed">Technology alone isn't a product. AI systems only succeed when they natively solve defined business problems and integrate into real workflows.</p>
+          <div className="grid md:grid-cols-2 gap-4 md:gap-6">
+            <div className="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-white border border-[#FADBD8]/50 shadow-sm hover:shadow-xl hover:shadow-[#D97B66]/5 transition-all">
+              <h3 className="text-xl font-bold text-slate-900 mb-2 md:mb-3 tracking-tight">Outcomes over features</h3>
+              <p className="text-slate-500 leading-relaxed text-sm md:text-base">Technology alone isn't a product. AI systems only succeed when they natively solve defined business problems and integrate into real workflows.</p>
             </div>
-            <div className="p-8 rounded-3xl bg-white border border-[#FADBD8]/50 shadow-sm hover:shadow-xl hover:shadow-[#D97B66]/5 transition-all">
-              <h3 className="text-xl font-bold text-slate-900 mb-3 tracking-tight">Bridging the chasm</h3>
-              <p className="text-slate-500 leading-relaxed">I translate raw technical constraints into clear go-to-market strategies, enabling executive leadership to make informed technology investments.</p>
+            <div className="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-white border border-[#FADBD8]/50 shadow-sm hover:shadow-xl hover:shadow-[#D97B66]/5 transition-all">
+              <h3 className="text-xl font-bold text-slate-900 mb-2 md:mb-3 tracking-tight">Bridging the chasm</h3>
+              <p className="text-slate-500 leading-relaxed text-sm md:text-base">I translate raw technical constraints into clear go-to-market strategies, enabling executive leadership to make informed technology investments.</p>
             </div>
-            <div className="p-8 rounded-3xl bg-white border border-[#FADBD8]/50 shadow-sm hover:shadow-xl hover:shadow-[#D97B66]/5 transition-all">
-              <h3 className="text-xl font-bold text-slate-900 mb-3 tracking-tight">Designing for scale</h3>
-              <p className="text-slate-500 leading-relaxed">Rooted in a computer science foundation, I prioritize system architecture and data integrity equally alongside the front-end user experience.</p>
+            <div className="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-white border border-[#FADBD8]/50 shadow-sm hover:shadow-xl hover:shadow-[#D97B66]/5 transition-all">
+              <h3 className="text-xl font-bold text-slate-900 mb-2 md:mb-3 tracking-tight">Designing for scale</h3>
+              <p className="text-slate-500 leading-relaxed text-sm md:text-base">Rooted in a computer science foundation, I prioritize system architecture and data integrity equally alongside the front-end user experience.</p>
             </div>
-            <div className="p-8 rounded-3xl bg-white border border-[#FADBD8]/50 shadow-sm hover:shadow-xl hover:shadow-[#D97B66]/5 transition-all">
-              <h3 className="text-xl font-bold text-slate-900 mb-3 tracking-tight">Navigating ambiguity</h3>
-              <p className="text-slate-500 leading-relaxed">Shaping emerging technologies into market-ready products requires structured, systematic thinking—honed through executing massive 0-to-1 product launches.</p>
+            <div className="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-white border border-[#FADBD8]/50 shadow-sm hover:shadow-xl hover:shadow-[#D97B66]/5 transition-all">
+              <h3 className="text-xl font-bold text-slate-900 mb-2 md:mb-3 tracking-tight">Navigating ambiguity</h3>
+              <p className="text-slate-500 leading-relaxed text-sm md:text-base">Shaping emerging technologies into market-ready products requires structured, systematic thinking—honed through executing massive 0-to-1 product launches.</p>
             </div>
           </div>
         </section>
@@ -230,8 +230,8 @@ export default function App() {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="pt-12">
-          <div className="p-10 md:p-14 rounded-[3rem] bg-white border border-[#FADBD8]/50 shadow-2xl shadow-[#D97B66]/10 relative overflow-hidden">
+        <section id="contact" className="pt-8 md:pt-12">
+          <div className="p-6 md:p-14 rounded-[2rem] md:rounded-[3rem] bg-white border border-[#FADBD8]/50 shadow-2xl shadow-[#D97B66]/10 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#FADBD8]/10 rounded-full -mr-32 -mt-32 opacity-50" />
             <div className="max-w-xl relative">
               <div className="mb-8 block">
@@ -327,8 +327,8 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="max-w-5xl mx-auto px-6 py-16 border-t border-[#FADBD8]/50 text-center text-slate-400 text-sm font-bold">
-        <p>© {new Date().getFullYear()} Wani Bisen. Built with Node.js, Supabase, and Resend.</p>
+      <footer className="max-w-5xl mx-auto px-5 md:px-8 py-12 md:py-16 border-t border-[#FADBD8]/50 text-center text-slate-400 text-sm font-medium">
+        <p className="max-w-xs mx-auto md:max-w-full leading-relaxed">© {new Date().getFullYear()} Wani Bisen. Built with Node.js, Supabase, and Resend.</p>
       </footer>
     </div>
   );
