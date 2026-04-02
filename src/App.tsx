@@ -90,7 +90,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#FFF9F6] text-slate-800 font-sans selection:bg-[#FADBD8]">
       {/* Header */}
-      <header className="max-w-5xl mx-auto px-6 py-24">
+      <header className="max-w-5xl mx-auto px-6 pt-24 pb-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -109,11 +109,11 @@ export default function App() {
         </motion.div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-6 pb-24 pt-4">
+      <main className="max-w-5xl mx-auto px-6 pb-16 pt-0">
         
         {/* My Approach Section */}
-        <section id="approach" className="mb-24">
-          <div className="mb-12">
+        <section id="approach" className="mb-16">
+          <div className="mb-8">
             <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight">How I Build Products</h2>
             <p className="text-xl text-slate-500 font-medium mt-4">Core principles driving my product leadership.</p>
           </div>
@@ -138,8 +138,8 @@ export default function App() {
         </section>
 
         {/* Projects Section - NOW SECOND */}
-        <section id="projects" className="mb-24">
-          <div className="flex items-center gap-3 mb-16">
+        <section id="projects" className="mb-16">
+          <div className="flex items-center gap-3 mb-8">
             <div className="p-3 rounded-2xl bg-[#FADBD8]/30 border border-[#D97B66]/20 shadow-sm">
               <Code className="text-[#D97B66]" size={28} />
             </div>
@@ -188,16 +188,16 @@ export default function App() {
           </div>
         </section>
 
-        {/* Experience Section - NOW SECOND */}
-        <section id="experience">
-          <div className="flex items-center gap-3 mb-16">
+        {/* Experience Section */}
+        <section id="experience" className="mb-16">
+          <div className="flex items-center gap-3 mb-8">
             <div className="p-3 rounded-2xl bg-[#FADBD8]/30 border border-[#D97B66]/20 shadow-sm">
               <Briefcase className="text-[#D97B66]" size={28} />
             </div>
             <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight">Leadership & Experience</h2>
           </div>
           
-          <div className="space-y-16">
+          <div className="space-y-12">
             {experience.map((exp, idx) => (
               <motion.div 
                 key={idx}
