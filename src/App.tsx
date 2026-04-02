@@ -99,7 +99,7 @@ export default function App() {
         >
           <div className="inline-flex items-start md:items-center gap-2 px-4 py-2 md:py-1.5 rounded-2xl md:rounded-full bg-[#FADBD8]/30 border border-[#D97B66]/20 text-[#D97B66] text-sm font-semibold tracking-wide">
             <Terminal size={14} className="shrink-0 mt-0.5 md:mt-0" />
-            <span>INSEAD x Wharton MBA | AI Product Strategy | Computer Science Foundation</span>
+            <span>INSEAD x Wharton MBA | Product Strategy | Computer Science Foundation</span>
           </div>
           <div className="flex flex-wrap items-center gap-4 md:gap-6 mt-4 mb-6">
             <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tight text-slate-900 leading-none">
@@ -116,7 +116,7 @@ export default function App() {
             </a>
           </div>
           <p className="text-xl md:text-2xl text-slate-500 max-w-3xl leading-relaxed font-medium">
-            Building scalable, AI-driven products at the intersection of deep technology and business strategy. I turn complex architectures into measurable outcomes and market-leading user experiences.
+            Building scalable products at the intersection of deep technology and business strategy. I turn complex architectures into measurable outcomes and market-leading user experiences.
           </p>
         </motion.div>
       </header>
@@ -251,7 +251,7 @@ export default function App() {
                 <div className="p-3 inline-flex rounded-2xl bg-[#FADBD8]/30 border border-[#D97B66]/20 shadow-sm mb-6">
                   <Mail className="text-[#D97B66]" size={32} />
                 </div>
-                <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-tight">Looking to build or scale AI products? Let's connect.</h2>
+                <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-tight">Looking to build or scale products? Let's connect.</h2>
               </div>
               <p className="text-xl text-slate-500 mb-12 font-medium">
                 Drop me a message below.
