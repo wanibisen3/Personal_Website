@@ -90,7 +90,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FFF9F6] text-slate-800 font-sans selection:bg-[#FADBD8] relative isolate overflow-hidden">
+    <div className="min-h-screen bg-white text-slate-800 font-sans selection:bg-[#FADBD8] relative isolate overflow-hidden">
       {/* Animated Background Blobs */}
       <div
         aria-hidden="true"

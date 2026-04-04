@@ -15,9 +15,7 @@
 
 @layer base {
   body {
-    background:
-      radial-gradient(circle at top left, rgba(217, 123, 102, 0.14), transparent 22rem),
-      linear-gradient(180deg, #fffaf7 0%, #fff7f2 45%, #fffaf7 100%);
+    background: #ffffff;
   }
 }
 
