@@ -106,9 +106,8 @@ export default function App() {
 
       {/* Sticky Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-xl border-b border-slate-200/50 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <a href="#" className="text-2xl font-black text-[#D97B66] tracking-tight">WB<span className="text-slate-900">.</span></a>
-          <div className="flex items-center gap-1 md:gap-2">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 h-16 flex items-center justify-center">
+          <div className="flex items-center gap-2 md:gap-4">
             {[
               { label: "About", href: "#about" },
               { label: "Portfolio", href: "#projects" },
@@ -118,14 +117,14 @@ export default function App() {
               <a
                 key={item.href}
                 href={item.href}
-                className="px-3 md:px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:text-[#D97B66] hover:bg-[#FADBD8]/20 transition-all"
+                className="px-4 md:px-5 py-2 rounded-full text-base font-semibold text-slate-600 hover:text-[#D97B66] hover:bg-[#FADBD8]/20 transition-all"
               >
                 {item.label}
               </a>
             ))}
             <a
               href="#contact"
-              className="ml-2 px-5 py-2 rounded-full text-sm font-bold text-white bg-[#D97B66] hover:bg-[#c56a57] transition-all shadow-md hover:shadow-lg"
+              className="ml-2 px-6 py-2.5 rounded-full text-base font-bold text-white bg-[#D97B66] hover:bg-[#c56a57] transition-all shadow-md hover:shadow-lg"
             >
               Let's Connect
             </a>
