@@ -91,10 +91,14 @@ function Bubbles({ count = 120 }: { count?: number }) {
   return (
     <instancedMesh ref={ref} args={[undefined, undefined, count]}>
       <sphereGeometry args={[1, 16, 16]} />
-      <meshBasicMaterial
+      <meshStandardMaterial
         color="#ffffff"
+        emissive="#ffffff"
+        emissiveIntensity={0.6}
+        roughness={0.2}
+        metalness={0}
         transparent
-        opacity={0.55}
+        opacity={0.85}
       />
     </instancedMesh>
   );
