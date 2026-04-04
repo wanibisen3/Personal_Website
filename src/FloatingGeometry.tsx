@@ -93,14 +93,16 @@ function Bubbles({ count = 120 }: { count?: number }) {
       <sphereGeometry args={[1, 16, 16]} />
       <meshPhysicalMaterial
         color="#ffffff"
-        roughness={0.1}
-        metalness={0.05}
-        transmission={0.92}
-        thickness={0.6}
+        emissive="#ffffff"
+        emissiveIntensity={0.15}
+        roughness={0.05}
+        metalness={0.0}
+        transmission={0.4}
+        thickness={0.3}
         transparent
-        opacity={0.35}
-        ior={1.5}
-        envMapIntensity={0.3}
+        opacity={0.5}
+        ior={1.3}
+        envMapIntensity={0.2}
       />
     </instancedMesh>
   );
@@ -125,10 +127,10 @@ export default function FloatingGeometry() {
         eventPrefix="client"
       >
         <Suspense fallback={null}>
-          <ambientLight intensity={0.7} color="#ffffff" />
-          <directionalLight position={[8, 10, 8]} intensity={0.5} color="#ffffff" />
-          <directionalLight position={[-6, 4, -6]} intensity={0.25} color="#f5e6e0" />
-          <pointLight position={[0, 6, 4]} intensity={0.3} color="#FADBD8" distance={20} />
+          <ambientLight intensity={1.2} color="#ffffff" />
+          <directionalLight position={[8, 10, 8]} intensity={0.8} color="#ffffff" />
+          <directionalLight position={[-6, 4, -6]} intensity={0.5} color="#ffffff" />
+          <pointLight position={[0, 6, 4]} intensity={0.4} color="#ffffff" distance={25} />
 
           <JsonMouseTracker />
           <Bubbles />
