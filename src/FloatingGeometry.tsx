@@ -1,147 +1,193 @@
-import { useEffect, useRef } from "react";
+import { useRef, useMemo, Suspense, useCallback } from "react";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import * as THREE from "three";
 
-export default function FloatingGeometry() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+/* ------------------------------------------------------------------ */
+/*  Flowing 3D wave-mesh that ripples under the user's pointer        */
+/* ------------------------------------------------------------------ */
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+const GRID = 80;          // vertex resolution
+const SEG  = GRID - 1;
+const SPREAD = 14;        // world-unit width of the plane
 
-    let animationId: number;
-    let mouseX = 0;
-    let mouseY = 0;
-    let targetX = 0;
-    let targetY = 0;
+function WaveMesh() {
+  const meshRef = useRef<THREE.Mesh>(null);
+  const { viewport } = useThree();
 
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resize();
-    window.addEventListener("resize", resize);
+  // Normalised mouse in world coords, updated every frame
+  const mouse = useRef(new THREE.Vector2(0, 0));
 
-    const handleMouseMove = (e: MouseEvent) => {
-      targetX = e.clientX;
-      targetY = e.clientY;
-    };
-    window.addEventListener("mousemove", handleMouseMove);
+  const handlePointerMove = useCallback(
+    (e: THREE.Event & { point: THREE.Vector3 }) => {
+      mouse.current.set(e.point.x, e.point.y);
+    },
+    []
+  );
 
-    // Create particles
-    const particles: {
-      x: number;
-      y: number;
-      baseX: number;
-      baseY: number;
-      size: number;
-      color: string;
-      speed: number;
-      angle: number;
-      orbitRadius: number;
-    }[] = [];
-
-    const colors = [
-      "rgba(217, 123, 102, 0.12)",
-      "rgba(217, 123, 102, 0.08)",
-      "rgba(96, 165, 250, 0.10)",
-      "rgba(96, 165, 250, 0.06)",
-      "rgba(244, 114, 182, 0.07)",
-    ];
-
-    for (let i = 0; i < 40; i++) {
-      particles.push({
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
-        baseX: Math.random() * window.innerWidth,
-        baseY: Math.random() * window.innerHeight,
-        size: Math.random() * 3 + 1.5,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        speed: Math.random() * 0.3 + 0.1,
-        angle: Math.random() * Math.PI * 2,
-        orbitRadius: Math.random() * 30 + 10,
-      });
-    }
-
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Smooth mouse follow
-      mouseX += (targetX - mouseX) * 0.04;
-      mouseY += (targetY - mouseY) * 0.04;
-
-      for (const p of particles) {
-        // Natural orbit
-        p.angle += p.speed * 0.01;
-        const orbitX = Math.cos(p.angle) * p.orbitRadius;
-        const orbitY = Math.sin(p.angle) * p.orbitRadius;
-
-        // Mouse influence (gentle push)
-        const dx = mouseX - p.baseX;
-        const dy = mouseY - p.baseY;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const maxDist = 350;
-        const influence = Math.max(0, 1 - dist / maxDist);
-        const pushX = dx * influence * 0.06;
-        const pushY = dy * influence * 0.06;
-
-        p.x = p.baseX + orbitX + pushX;
-        p.y = p.baseY + orbitY + pushY;
-
-        // Draw soft circle
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.fill();
-
-        // Draw soft glow
-        const gradient = ctx.createRadialGradient(
-          p.x, p.y, 0,
-          p.x, p.y, p.size * 8
-        );
-        gradient.addColorStop(0, p.color);
-        gradient.addColorStop(1, "transparent");
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size * 8, 0, Math.PI * 2);
-        ctx.fillStyle = gradient;
-        ctx.fill();
-      }
-
-      // Draw faint connection lines between nearby particles
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 150) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(217, 123, 102, ${0.04 * (1 - dist / 150)})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
-      }
-
-      animationId = requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    return () => {
-      cancelAnimationFrame(animationId);
-      window.removeEventListener("resize", resize);
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
+  // Base positions stored once
+  const basePositions = useMemo(() => {
+    const geo = new THREE.PlaneGeometry(SPREAD, SPREAD, SEG, SEG);
+    return Float32Array.from(geo.attributes.position.array);
   }, []);
 
+  useFrame(({ clock }) => {
+    const mesh = meshRef.current;
+    if (!mesh) return;
+    const geo = mesh.geometry as THREE.BufferGeometry;
+    const pos = geo.attributes.position;
+    const t = clock.getElapsedTime();
+
+    for (let i = 0; i < pos.count; i++) {
+      const bx = basePositions[i * 3];
+      const by = basePositions[i * 3 + 1];
+
+      // Organic base wave (multiple frequencies for richness)
+      let z = 0;
+      z += Math.sin(bx * 0.6 + t * 0.4) * 0.25;
+      z += Math.sin(by * 0.8 + t * 0.3) * 0.2;
+      z += Math.cos((bx + by) * 0.4 + t * 0.5) * 0.15;
+      z += Math.sin(bx * 1.2 - t * 0.6) * 0.08;
+
+      // Mouse ripple — radial wave emanating from pointer
+      const dx = bx - mouse.current.x;
+      const dy = by - mouse.current.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      const ripple = Math.sin(dist * 1.8 - t * 3) * Math.exp(-dist * 0.25) * 0.6;
+      z += ripple;
+
+      pos.setZ(i, z);
+    }
+
+    pos.needsUpdate = true;
+    geo.computeVertexNormals();
+  });
+
   return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 z-[1] pointer-events-none"
+    <mesh
+      ref={meshRef}
+      rotation={[-Math.PI / 2.6, 0, 0]}
+      position={[0, -1.5, 0]}
+      onPointerMove={handlePointerMove}
+    >
+      <planeGeometry args={[SPREAD, SPREAD, SEG, SEG]} />
+      <meshPhysicalMaterial
+        color="#e8d0c9"
+        roughness={0.55}
+        metalness={0.15}
+        transmission={0.15}
+        thickness={0.8}
+        transparent
+        opacity={0.35}
+        side={THREE.DoubleSide}
+        wireframe={false}
+        flatShading
+      />
+    </mesh>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Tiny floating glass-like spheres that drift with gentle physics    */
+/* ------------------------------------------------------------------ */
+
+function FloatingOrbs({ count = 18 }: { count?: number }) {
+  const ref = useRef<THREE.InstancedMesh>(null);
+  const dummy = useMemo(() => new THREE.Object3D(), []);
+
+  const particles = useMemo(() => {
+    return Array.from({ length: count }, () => ({
+      position: new THREE.Vector3(
+        (Math.random() - 0.5) * 12,
+        (Math.random() - 0.5) * 6 + 1,
+        (Math.random() - 0.5) * 6
+      ),
+      speed: Math.random() * 0.3 + 0.15,
+      offset: Math.random() * Math.PI * 2,
+      scale: Math.random() * 0.12 + 0.04,
+    }));
+  }, [count]);
+
+  useFrame(({ clock }) => {
+    if (!ref.current) return;
+    const t = clock.getElapsedTime();
+    particles.forEach((p, i) => {
+      dummy.position.set(
+        p.position.x + Math.sin(t * p.speed + p.offset) * 0.5,
+        p.position.y + Math.cos(t * p.speed * 0.7 + p.offset) * 0.4,
+        p.position.z + Math.sin(t * p.speed * 0.5 + p.offset * 2) * 0.3
+      );
+      dummy.scale.setScalar(p.scale);
+      dummy.updateMatrix();
+      ref.current!.setMatrixAt(i, dummy.matrix);
+    });
+    ref.current.instanceMatrix.needsUpdate = true;
+  });
+
+  return (
+    <instancedMesh ref={ref} args={[undefined, undefined, count]}>
+      <sphereGeometry args={[1, 16, 16]} />
+      <meshPhysicalMaterial
+        color="#D97B66"
+        roughness={0.2}
+        metalness={0.3}
+        transmission={0.6}
+        thickness={0.5}
+        transparent
+        opacity={0.25}
+      />
+    </instancedMesh>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Invisible plane to capture mouse events across entire viewport    */
+/* ------------------------------------------------------------------ */
+
+function JsonPointerPlane({ onMove }: { onMove: (e: any) => void }) {
+  const { viewport } = useThree();
+  return (
+    <mesh
+      position={[0, -1.5, 0.5]}
+      rotation={[-Math.PI / 2.6, 0, 0]}
+      onPointerMove={onMove}
+      visible={false}
+    >
+      <planeGeometry args={[viewport.width * 3, viewport.height * 3]} />
+      <meshBasicMaterial />
+    </mesh>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Main export — full-screen fixed 3D canvas                         */
+/* ------------------------------------------------------------------ */
+
+export default function FloatingGeometry() {
+  return (
+    <div
+      className="fixed inset-0 z-[1]"
       aria-hidden="true"
-      style={{ opacity: 0.9 }}
-    />
+      style={{ pointerEvents: "auto" }}
+    >
+      <Canvas
+        camera={{ position: [0, 4, 9], fov: 50 }}
+        dpr={[1, 1.5]}
+        style={{ background: "transparent", pointerEvents: "auto" }}
+        gl={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
+        eventSource={typeof document !== "undefined" ? document.documentElement : undefined}
+        eventPrefix="client"
+      >
+        <Suspense fallback={null}>
+          {/* Lighting: warm + cool for depth */}
+          <ambientLight intensity={0.4} />
+          <directionalLight position={[5, 8, 5]} intensity={0.7} color="#fff5ee" />
+          <directionalLight position={[-4, 3, -3]} intensity={0.3} color="#bfdbfe" />
+          <pointLight position={[0, 5, 0]} intensity={0.4} color="#FADBD8" distance={20} />
+
+          <WaveMesh />
+          <FloatingOrbs />
+        </Suspense>
+      </Canvas>
+    </div>
   );
 }
