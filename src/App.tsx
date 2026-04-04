@@ -17,6 +17,7 @@ import {
   Terminal,
   Linkedin
 } from "lucide-react";
+import FloatingGeometry from "./FloatingGeometry";
 
 interface Experience {
   company: string;
@@ -99,6 +100,9 @@ export default function App() {
         <div className="site-orb site-orb--cool top-[4rem] right-[-8rem] h-[28rem] w-[28rem] animation-delay-2000" />
         <div className="site-orb site-orb--rose bottom-[-10rem] left-[22%] h-[32rem] w-[32rem] animation-delay-4000" />
       </div>
+
+      {/* 3D Floating Geometry */}
+      <FloatingGeometry />
 
       {/* Header */}
       <header className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 pt-16 md:pt-24 pb-8 md:pb-12 relative z-10">
