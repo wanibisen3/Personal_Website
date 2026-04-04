@@ -7,6 +7,61 @@
   100% { transform: translate(0px, 0px) scale(1); }
 }
 
+@keyframes drift {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(2%, -3%, 0) scale(1.08); }
+  100% { transform: translate3d(-1%, 2%, 0) scale(0.98); }
+}
+
+@layer base {
+  body {
+    background:
+      radial-gradient(circle at top left, rgba(217, 123, 102, 0.14), transparent 22rem),
+      linear-gradient(180deg, #fffaf7 0%, #fff7f2 45%, #fffaf7 100%);
+  }
+}
+
+@layer components {
+  .site-background {
+    background:
+      radial-gradient(circle at 12% 18%, rgba(217, 123, 102, 0.18), transparent 18rem),
+      radial-gradient(circle at 85% 16%, rgba(96, 165, 250, 0.15), transparent 20rem),
+      radial-gradient(circle at 52% 82%, rgba(244, 63, 94, 0.11), transparent 24rem);
+  }
+
+  .site-background::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(15, 23, 42, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15, 23, 42, 0.045) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent 92%);
+    opacity: 0.35;
+  }
+
+  .site-orb {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(120px);
+    animation: blob 12s infinite alternate ease-in-out, drift 18s infinite ease-in-out;
+    will-change: transform;
+  }
+
+  .site-orb--warm {
+    background: rgba(217, 123, 102, 0.34);
+  }
+
+  .site-orb--cool {
+    background: rgba(96, 165, 250, 0.28);
+  }
+
+  .site-orb--rose {
+    background: rgba(244, 114, 182, 0.2);
+  }
+}
+
 @layer utilities {
   .animate-blob {
     animation: blob 8s infinite alternate ease-in-out;

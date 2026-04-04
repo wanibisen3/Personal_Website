@@ -93,16 +93,15 @@ export default function App() {
       {/* Animated Background Blobs */}
       <div
         aria-hidden="true"
-        className="fixed inset-0 pointer-events-none z-0 overflow-hidden"
+        className="site-background fixed inset-0 pointer-events-none z-0 overflow-hidden"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(217,123,102,0.14),_transparent_34%),radial-gradient(circle_at_top_right,_rgba(96,165,250,0.14),_transparent_32%),radial-gradient(circle_at_bottom,_rgba(244,63,94,0.12),_transparent_36%)]" />
-        <div className="absolute top-[-8%] left-[-12%] h-[26rem] w-[26rem] rounded-full bg-[#D97B66]/35 blur-[110px] animate-blob will-change-transform" />
-        <div className="absolute top-[6%] right-[-10%] h-[24rem] w-[24rem] rounded-full bg-sky-400/30 blur-[110px] animate-blob animation-delay-2000 will-change-transform" />
-        <div className="absolute bottom-[-12%] left-[18%] h-[28rem] w-[28rem] rounded-full bg-rose-300/25 blur-[120px] animate-blob animation-delay-4000 will-change-transform" />
+        <div className="site-orb site-orb--warm top-[-6rem] left-[-10rem] h-[30rem] w-[30rem]" />
+        <div className="site-orb site-orb--cool top-[4rem] right-[-8rem] h-[28rem] w-[28rem] animation-delay-2000" />
+        <div className="site-orb site-orb--rose bottom-[-10rem] left-[22%] h-[32rem] w-[32rem] animation-delay-4000" />
       </div>
 
       {/* Header */}
-      <header className="max-w-5xl mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-8 md:pb-12 relative z-10">
+      <header className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 pt-16 md:pt-24 pb-8 md:pb-12 relative z-10">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-12 md:gap-8">
           <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -150,7 +149,7 @@ export default function App() {
         </div>
       </header>
       
-      <main className="max-w-5xl mx-auto px-5 md:px-8 pb-16 pt-0 relative z-10">
+      <main className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 pb-16 pt-0 relative z-10">
         
         {/* Projects Section - NOW FIRST */}
         <section id="projects" className="mb-16">
@@ -369,7 +368,7 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="max-w-5xl mx-auto px-5 md:px-8 py-12 md:py-16 border-t border-[#FADBD8]/50 text-center text-slate-400 text-sm font-medium relative z-10">
+      <footer className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16 border-t border-[#FADBD8]/50 text-center text-slate-400 text-sm font-medium relative z-10">
         <p className="max-w-xs mx-auto md:max-w-full leading-relaxed">© {new Date().getFullYear()} Wani Bisen. Built with Node.js, Supabase, and Resend.</p>
       </footer>
     </div>
