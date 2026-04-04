@@ -66,13 +66,13 @@ function WaveMesh() {
     >
       <planeGeometry args={[SPREAD, SPREAD, SEG, SEG]} />
       <meshPhysicalMaterial
-        color="#f2c4b5"
-        roughness={0.55}
+        color="#f0e6e2"
+        roughness={0.6}
         metalness={0.08}
         transmission={0.06}
         thickness={0.4}
         transparent
-        opacity={0.38}
+        opacity={0.45}
         side={THREE.DoubleSide}
         flatShading
       />
@@ -149,13 +149,13 @@ function FloatingOrbs({ count = 60 }: { count?: number }) {
     <instancedMesh ref={ref} args={[undefined, undefined, count]}>
       <sphereGeometry args={[1, 10, 10]} />
       <meshPhysicalMaterial
-        color="#edb5a6"
+        color="#e8dcd8"
         roughness={0.2}
         metalness={0.1}
         transmission={0.45}
         thickness={0.3}
         transparent
-        opacity={0.25}
+        opacity={0.2}
       />
     </instancedMesh>
   );
