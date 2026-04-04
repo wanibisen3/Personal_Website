@@ -22,24 +22,29 @@ function JsonMouseTracker() {
 /*  120 white glass bubbles that orbit, scatter & spin on mouse move  */
 /* ------------------------------------------------------------------ */
 
-function Bubbles({ count = 120 }: { count?: number }) {
+function Bubbles({ count = 50 }: { count?: number }) {
   const ref = useRef<THREE.InstancedMesh>(null);
   const dummy = useMemo(() => new THREE.Object3D(), []);
 
   const particles = useMemo(() => {
-    return Array.from({ length: count }, () => ({
-      home: new THREE.Vector3(
-        (Math.random() - 0.5) * 22,
-        (Math.random() - 0.5) * 14,
-        (Math.random() - 0.5) * 12
-      ),
-      pos: new THREE.Vector3(),
-      vel: new THREE.Vector3(),
-      speed: Math.random() * 0.25 + 0.08,
-      phase: Math.random() * Math.PI * 2,
-      scale: Math.random() * 0.22 + 0.06,
-      rotSpeed: (Math.random() - 0.5) * 0.02,
-    }));
+    return Array.from({ length: count }, () => {
+      // Bias positions toward edges: generate x then push outward
+      let x = (Math.random() - 0.5) * 24;
+      if (Math.abs(x) < 5) x += (x > 0 ? 5 : -5); // push away from center
+      return {
+        home: new THREE.Vector3(
+          x,
+          (Math.random() - 0.5) * 14,
+          (Math.random() - 0.5) * 10
+        ),
+        pos: new THREE.Vector3(),
+        vel: new THREE.Vector3(),
+        speed: Math.random() * 0.25 + 0.08,
+        phase: Math.random() * Math.PI * 2,
+        scale: Math.random() * 0.14 + 0.04,
+        rotSpeed: (Math.random() - 0.5) * 0.02,
+      };
+    });
   }, [count]);
 
   useFrame(({ clock }) => {
@@ -98,7 +103,7 @@ function Bubbles({ count = 120 }: { count?: number }) {
         roughness={0.2}
         metalness={0}
         transparent
-        opacity={0.85}
+        opacity={0.45}
       />
     </instancedMesh>
   );
