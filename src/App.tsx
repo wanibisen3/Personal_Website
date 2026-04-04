@@ -89,12 +89,16 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FFF9F6] text-slate-800 font-sans selection:bg-[#FADBD8] relative overflow-hidden">
+    <div className="min-h-screen bg-[#FFF9F6] text-slate-800 font-sans selection:bg-[#FADBD8] relative isolate overflow-hidden">
       {/* Animated Background Blobs */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[#D97B66]/20 mix-blend-multiply filter blur-[100px] animate-blob" />
-        <div className="absolute top-[10%] right-[-10%] w-[40%] h-[50%] rounded-full bg-blue-400/20 mix-blend-multiply filter blur-[100px] animate-blob animation-delay-2000" />
-        <div className="absolute bottom-[-10%] left-[20%] w-[50%] h-[50%] rounded-full bg-rose-400/10 mix-blend-multiply filter blur-[100px] animate-blob animation-delay-4000" />
+      <div
+        aria-hidden="true"
+        className="fixed inset-0 pointer-events-none z-0 overflow-hidden"
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(217,123,102,0.14),_transparent_34%),radial-gradient(circle_at_top_right,_rgba(96,165,250,0.14),_transparent_32%),radial-gradient(circle_at_bottom,_rgba(244,63,94,0.12),_transparent_36%)]" />
+        <div className="absolute top-[-8%] left-[-12%] h-[26rem] w-[26rem] rounded-full bg-[#D97B66]/35 blur-[110px] animate-blob will-change-transform" />
+        <div className="absolute top-[6%] right-[-10%] h-[24rem] w-[24rem] rounded-full bg-sky-400/30 blur-[110px] animate-blob animation-delay-2000 will-change-transform" />
+        <div className="absolute bottom-[-12%] left-[18%] h-[28rem] w-[28rem] rounded-full bg-rose-300/25 blur-[120px] animate-blob animation-delay-4000 will-change-transform" />
       </div>
 
       {/* Header */}
@@ -371,4 +375,3 @@ export default function App() {
     </div>
   );
 }
-
