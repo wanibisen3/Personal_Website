@@ -242,29 +242,28 @@ export default function App() {
             <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight">Leadership & Experience</h2>
           </div>
           
-          <div className="space-y-12">
+          <div className="space-y-6">
             {experience.map((exp, idx) => (
               <motion.div 
                 key={idx}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="relative pl-10 border-l-4 border-[#FADBD8]/50 group"
+                className="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-white/90 backdrop-blur-sm border border-[#FADBD8]/40 shadow-lg shadow-[#D97B66]/5 hover:shadow-xl transition-all group"
               >
-                <div className="absolute -left-[14px] top-0 w-6 h-6 rounded-full bg-white border-4 border-[#FADBD8]/50 group-hover:border-[#D97B66]/50 transition-all shadow-sm" />
-                <div className="flex flex-col md:flex-row md:items-center justify-between mb-6">
+                <div className="flex flex-col md:flex-row md:items-center justify-between mb-5">
                   <div>
-                    <h3 className="text-2xl font-black text-slate-900">{exp.role}</h3>
-                    <p className="text-[#D97B66] font-bold text-lg">{exp.company}</p>
+                    <h3 className="text-xl md:text-2xl font-black text-slate-900">{exp.role}</h3>
+                    <p className="text-[#D97B66] font-bold text-base md:text-lg">{exp.company}</p>
                   </div>
-                  <span className="text-sm font-bold text-slate-400 bg-slate-100 px-4 py-1.5 rounded-full mt-2 md:mt-0">
+                  <span className="text-sm font-bold text-slate-400 bg-slate-100 px-4 py-1.5 rounded-full mt-2 md:mt-0 shrink-0">
                     {exp.period}
                   </span>
                 </div>
-                <ul className="space-y-4">
+                <ul className="space-y-3">
                   {exp.highlights.map((h, i) => (
-                    <li key={i} className="flex gap-4 text-slate-600 leading-relaxed text-lg">
-                      <ChevronRight size={22} className="text-[#D97B66]/50 shrink-0 mt-1" />
+                    <li key={i} className="flex gap-3 text-slate-600 leading-relaxed text-base">
+                      <ChevronRight size={20} className="text-[#D97B66]/50 shrink-0 mt-0.5" />
                       <span>{h}</span>
                     </li>
                   ))}
