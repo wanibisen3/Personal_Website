@@ -89,10 +89,18 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FFF9F6] text-slate-800 font-sans selection:bg-[#FADBD8]">
+    <div className="min-h-screen bg-[#FFF9F6] text-slate-800 font-sans selection:bg-[#FADBD8] relative overflow-hidden">
+      {/* Animated Background Blobs */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[#FADBD8]/40 mix-blend-multiply filter blur-[100px] opacity-70 animate-blob" />
+        <div className="absolute top-[10%] right-[-10%] w-[40%] h-[50%] rounded-full bg-blue-100/50 mix-blend-multiply filter blur-[100px] opacity-70 animate-blob animation-delay-2000" />
+        <div className="absolute bottom-[-10%] left-[20%] w-[50%] h-[50%] rounded-full bg-rose-100/40 mix-blend-multiply filter blur-[100px] opacity-70 animate-blob animation-delay-4000" />
+      </div>
+
       {/* Header */}
-      <header className="max-w-5xl mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-8 md:pb-12">
-        <motion.div
+      <header className="max-w-5xl mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-8 md:pb-12 relative z-10">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-12 md:gap-8">
+          <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="space-y-6"
@@ -115,13 +123,30 @@ export default function App() {
               <Linkedin size={32} className="md:w-10 md:h-10 lg:w-12 lg:h-12" strokeWidth={2} />
             </a>
           </div>
-          <p className="text-xl md:text-2xl text-slate-500 max-w-3xl leading-relaxed font-medium">
-            Building scalable products at the intersection of deep technology and business strategy. I turn complex architectures into measurable outcomes and market-leading user experiences.
-          </p>
-        </motion.div>
+            <p className="text-xl md:text-2xl text-slate-500 max-w-2xl leading-relaxed font-medium">
+              Building scalable products at the intersection of deep technology and business strategy. I turn complex architectures into measurable outcomes and market-leading user experiences.
+            </p>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="md:w-2/5 flex justify-center md:justify-end shrink-0"
+          >
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#FADBD8] to-blue-200 rounded-[2.5rem] transform rotate-3 scale-105 opacity-50 blur-xl animate-pulse" />
+              <img 
+                src="/profile.jpg" 
+                alt="Wani Bisen" 
+                className="w-72 h-80 md:w-80 md:h-[420px] object-cover rounded-[2.5rem] shadow-2xl border-4 border-white relative z-10"
+              />
+            </div>
+          </motion.div>
+        </div>
       </header>
-
-      <main className="max-w-5xl mx-auto px-5 md:px-8 pb-16 pt-0">
+      
+      <main className="max-w-5xl mx-auto px-5 md:px-8 pb-16 pt-0 relative z-10">
         
         {/* Projects Section - NOW FIRST */}
         <section id="projects" className="mb-16">
@@ -340,7 +365,7 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="max-w-5xl mx-auto px-5 md:px-8 py-12 md:py-16 border-t border-[#FADBD8]/50 text-center text-slate-400 text-sm font-medium">
+      <footer className="max-w-5xl mx-auto px-5 md:px-8 py-12 md:py-16 border-t border-[#FADBD8]/50 text-center text-slate-400 text-sm font-medium relative z-10">
         <p className="max-w-xs mx-auto md:max-w-full leading-relaxed">© {new Date().getFullYear()} Wani Bisen. Built with Node.js, Supabase, and Resend.</p>
       </footer>
     </div>
