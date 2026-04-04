@@ -104,8 +104,37 @@ export default function App() {
       {/* 3D Floating Geometry */}
       <FloatingGeometry />
 
+      {/* Sticky Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-xl border-b border-slate-200/50 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <a href="#" className="text-2xl font-black text-[#D97B66] tracking-tight">WB<span className="text-slate-900">.</span></a>
+          <div className="flex items-center gap-1 md:gap-2">
+            {[
+              { label: "About", href: "#about" },
+              { label: "Portfolio", href: "#projects" },
+              { label: "Approach", href: "#approach" },
+              { label: "Experience", href: "#experience" },
+            ].map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="px-3 md:px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:text-[#D97B66] hover:bg-[#FADBD8]/20 transition-all"
+              >
+                {item.label}
+              </a>
+            ))}
+            <a
+              href="#contact"
+              className="ml-2 px-5 py-2 rounded-full text-sm font-bold text-white bg-[#D97B66] hover:bg-[#c56a57] transition-all shadow-md hover:shadow-lg"
+            >
+              Let's Connect
+            </a>
+          </div>
+        </div>
+      </nav>
+
       {/* Header */}
-      <header className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 pt-16 md:pt-24 pb-8 md:pb-12 relative z-10">
+      <header id="about" className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 pt-28 md:pt-32 pb-8 md:pb-12 relative z-10">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-12 md:gap-6 lg:gap-8">
           <motion.div
           initial={{ opacity: 0, y: 20 }}
