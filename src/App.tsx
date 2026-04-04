@@ -303,17 +303,17 @@ export default function App() {
 
         {/* Contact Section */}
         <section id="contact" className="pt-8 md:pt-12">
-          <div className="p-6 md:p-14 rounded-[2rem] md:rounded-[3rem] bg-white border border-[#FADBD8]/50 shadow-2xl shadow-[#D97B66]/10 relative overflow-hidden">
+          <div className="p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] bg-white border border-[#FADBD8]/50 shadow-2xl shadow-[#D97B66]/10 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#FADBD8]/10 rounded-full -mr-32 -mt-32 opacity-50 pointer-events-none" />
-            <div className="max-w-xl relative z-10">
-              <div className="mb-8 block">
-                <div className="p-3 inline-flex rounded-2xl bg-[#FADBD8]/30 border border-[#D97B66]/20 shadow-sm mb-6">
-                  <Mail className="text-[#D97B66]" size={32} />
+            <div className="relative z-10">
+              <div className="flex items-center gap-4 mb-3">
+                <div className="p-2.5 rounded-xl bg-[#FADBD8]/30 border border-[#D97B66]/20 shadow-sm">
+                  <Mail className="text-[#D97B66]" size={24} />
                 </div>
-                <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-tight">Looking to build or scale products? Let's connect.</h2>
+                <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight">Let's connect.</h2>
               </div>
-              <p className="text-xl text-slate-500 mb-12 font-medium">
-                Drop me a message below.
+              <p className="text-lg text-slate-500 mb-8 font-medium ml-1">
+                Looking to build or scale products? Drop me a message below.
               </p>
 
               <form onSubmit={handleContact} className="space-y-8">
