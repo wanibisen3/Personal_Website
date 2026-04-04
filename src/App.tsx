@@ -92,9 +92,9 @@ export default function App() {
     <div className="min-h-screen bg-[#FFF9F6] text-slate-800 font-sans selection:bg-[#FADBD8] relative overflow-hidden">
       {/* Animated Background Blobs */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[#FADBD8]/40 mix-blend-multiply filter blur-[100px] opacity-70 animate-blob" />
-        <div className="absolute top-[10%] right-[-10%] w-[40%] h-[50%] rounded-full bg-blue-100/50 mix-blend-multiply filter blur-[100px] opacity-70 animate-blob animation-delay-2000" />
-        <div className="absolute bottom-[-10%] left-[20%] w-[50%] h-[50%] rounded-full bg-rose-100/40 mix-blend-multiply filter blur-[100px] opacity-70 animate-blob animation-delay-4000" />
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[#D97B66]/20 mix-blend-multiply filter blur-[100px] animate-blob" />
+        <div className="absolute top-[10%] right-[-10%] w-[40%] h-[50%] rounded-full bg-blue-400/20 mix-blend-multiply filter blur-[100px] animate-blob animation-delay-2000" />
+        <div className="absolute bottom-[-10%] left-[20%] w-[50%] h-[50%] rounded-full bg-rose-400/10 mix-blend-multiply filter blur-[100px] animate-blob animation-delay-4000" />
       </div>
 
       {/* Header */}
@@ -132,7 +132,7 @@ export default function App() {
             initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="md:w-2/5 flex justify-center md:justify-end shrink-0"
+            className="md:w-2/5 flex justify-center md:justify-end shrink-0 md:translate-x-6 lg:translate-x-12"
           >
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-[#FADBD8] to-blue-200 rounded-[2.5rem] transform rotate-3 scale-105 opacity-50 blur-xl animate-pulse" />
