@@ -144,7 +144,7 @@ export default function App() {
             <Terminal size={14} className="shrink-0 mt-0.5 md:mt-0" />
             <span>INSEAD x Wharton MBA | Product Strategy | Computer Science Foundation</span>
           </div>
-          <div className="flex items-center gap-3 md:gap-4 lg:gap-5 mt-4 mb-6">
+          <div className="flex items-end gap-3 md:gap-4 lg:gap-5 mt-4 mb-6">
             <h1 className="text-5xl md:text-[6.25rem] lg:text-[7.5rem] font-black tracking-tight text-slate-900 leading-none md:whitespace-nowrap">
               Wani <span className="text-[#D97B66]">Bisen</span>
             </h1>
@@ -152,10 +152,10 @@ export default function App() {
               href="https://www.linkedin.com/in/wanibisen/"
               target="_blank"
               rel="noopener noreferrer"
-              className="shrink-0 p-3 md:p-4 rounded-full bg-[#0A66C2]/10 hover:bg-[#0A66C2]/20 border border-[#0A66C2]/20 text-[#0A66C2] transition-all shadow-sm hover:shadow-md"
+              className="shrink-0 p-2.5 md:p-3 rounded-full bg-[#0A66C2]/10 hover:bg-[#0A66C2]/20 border border-[#0A66C2]/20 text-[#0A66C2] transition-all shadow-sm hover:shadow-md mb-1 md:mb-3 lg:mb-4"
               title="LinkedIn Profile"
             >
-              <Linkedin size={32} className="md:w-10 md:h-10 lg:w-12 lg:h-12" strokeWidth={2} />
+              <Linkedin size={24} className="md:w-7 md:h-7 lg:w-8 lg:h-8" strokeWidth={2} />
             </a>
           </div>
             <p className="text-xl md:text-2xl text-slate-500 max-w-2xl leading-relaxed font-medium">
