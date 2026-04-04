@@ -106,18 +106,18 @@ export default function App() {
 
       {/* Header */}
       <header className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 pt-16 md:pt-24 pb-8 md:pb-12 relative z-10">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-12 md:gap-8">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-12 md:gap-6 lg:gap-8">
           <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="space-y-6"
+          className="min-w-0 flex-1 space-y-6"
         >
           <div className="inline-flex items-start md:items-center gap-2 px-4 py-2 md:py-1.5 rounded-2xl md:rounded-full bg-[#FADBD8]/30 border border-[#D97B66]/20 text-[#D97B66] text-sm font-semibold tracking-wide">
             <Terminal size={14} className="shrink-0 mt-0.5 md:mt-0" />
             <span>INSEAD x Wharton MBA | Product Strategy | Computer Science Foundation</span>
           </div>
-          <div className="flex items-center gap-3 md:gap-5 mt-4 mb-6">
-            <h1 className="text-5xl md:text-8xl lg:text-9xl font-black tracking-tight text-slate-900 leading-none">
+          <div className="flex items-center gap-3 md:gap-4 lg:gap-5 mt-4 mb-6">
+            <h1 className="text-5xl md:text-[6.25rem] lg:text-[7.5rem] font-black tracking-tight text-slate-900 leading-none md:whitespace-nowrap">
               Wani <span className="text-[#D97B66]">Bisen</span>
             </h1>
             <a 
@@ -139,14 +139,14 @@ export default function App() {
             initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="md:w-2/5 flex justify-center md:justify-end shrink-0 md:translate-x-6 lg:translate-x-12"
+            className="md:w-[32%] lg:w-[30%] flex justify-center md:justify-end shrink-0 md:translate-x-10 lg:translate-x-16"
           >
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-[#FADBD8] to-blue-200 rounded-[2.5rem] transform rotate-3 scale-105 opacity-50 blur-xl animate-pulse" />
               <img 
                 src="/profile.jpg" 
                 alt="Wani Bisen" 
-                className="w-72 h-80 md:w-80 md:h-[420px] object-cover rounded-[2.5rem] shadow-2xl border-4 border-white relative z-10"
+                className="w-72 h-80 md:w-72 md:h-[400px] lg:w-80 lg:h-[420px] object-cover rounded-[2.5rem] shadow-2xl border-4 border-white relative z-10"
               />
             </div>
           </motion.div>
