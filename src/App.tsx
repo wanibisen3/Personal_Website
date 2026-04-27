@@ -134,7 +134,7 @@ function Hero() {
             >
               I'm Wani Bisen — a product leader who{" "}
               <strong style={{ color: "var(--ink)", fontWeight: 600 }}>builds at the frontier of AI, data systems, and business strategy</strong>.
-              {" "}I bridge the gap between engineering depth and executive strategy. INSEAD &amp; Wharton MBA, CS foundation, with a proven track record across global tech companies.
+              {" "}I bridge the gap between engineering depth and executive strategy. INSEAD &amp; Wharton MBA, computer science foundation, with a proven track record across global tech companies.
             </motion.p>
 
             <motion.div
