@@ -282,15 +282,15 @@ function Portfolio({ projects }: { projects: Project[] }) {
                 ↗
               </a>
             )}
-            <div style={{
-              padding: "2.5rem 3rem", borderBottom: "1px solid var(--rule)",
-              display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "2rem",
+            <div className="featured-header" style={{
+              padding: "var(--pad)", borderBottom: "1px solid var(--rule)",
+              display: "flex", gap: "1.5rem",
             }}>
-              <div style={{ fontFamily: "var(--serif)", fontSize: "4rem", lineHeight: 1, color: "var(--rule)", fontStyle: "italic", flexShrink: 0, userSelect: "none" }}>01</div>
+              <div className="featured-number" style={{ fontFamily: "var(--serif)", color: "var(--rule)", fontStyle: "italic", flexShrink: 0, userSelect: "none", lineHeight: 1 }}>01</div>
               <div style={{ flex: 1 }}>
-                <p style={{ fontSize: "0.75rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--accent)", marginBottom: "0.6rem" }}>AI Workflow Infrastructure</p>
-                <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.75rem", lineHeight: 1.2, color: "var(--ink)", letterSpacing: "-0.02em", marginBottom: "0.75rem" }}>{featured.title}</h3>
-                <p style={{ fontSize: "1rem", color: "var(--ink-mid)", lineHeight: 1.65 }}>{featured.description}</p>
+                <p style={{ fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--accent)", marginBottom: "0.5rem" }}>AI Workflow Infrastructure</p>
+                <h3 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.5rem, 4vw, 2rem)", lineHeight: 1.2, color: "var(--ink)", letterSpacing: "-0.02em", marginBottom: "0.75rem" }}>{featured.title}</h3>
+                <p style={{ fontSize: "1rem", color: "var(--ink-mid)", lineHeight: 1.6, maxWidth: 640 }}>{featured.description}</p>
               </div>
             </div>
             <div className="featured-meta-grid">
@@ -299,21 +299,11 @@ function Portfolio({ projects }: { projects: Project[] }) {
                 { heading: "My Approach", text: featured.approach },
                 { heading: "The Outcome", text: featured.outcome },
               ].map((col, i) => (
-                <div key={i} style={{
-                  padding: "2rem 2.5rem",
-                  borderRight: "1px solid var(--rule)",
-                  borderBottom: "1px solid var(--rule)",
-                }}>
+                <div key={i}>
                   <p style={{ fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--ink-soft)", marginBottom: "0.75rem" }}>{col.heading}</p>
                   <p style={{ fontSize: "0.95rem", color: "var(--ink-mid)", lineHeight: 1.7 }}>{col.text}</p>
                 </div>
               ))}
-              <style>{`
-                @media (min-width: 768px) {
-                  .featured-meta-grid div:last-child { border-right: none; }
-                  .featured-meta-grid div { border-bottom: none; }
-                }
-              `}</style>
             </div>
             <div style={{ padding: "1.5rem 3rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
               <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
