@@ -14,8 +14,8 @@
   --accent-bg: oklch(96% 0.025 32);
   --serif:     'DM Serif Display', Georgia, serif;
   --sans:      'DM Sans', system-ui, sans-serif;
-  --max:       1200px;
-  --pad:       clamp(2rem, 8vw, 5rem);
+  --max:       1440px;
+  --pad:       clamp(1.5rem, 5vw, 4rem);
 }
 
 html {

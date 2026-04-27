@@ -109,83 +109,70 @@ function Nav() {
 
 function Hero() {
   return (
-    <section id="top" className="hero-grid" style={{ overflow: "hidden", position: "relative", zIndex: 1 }}>
-      {/* Text column */}
-      <div className="hero-text-container" style={{
-        display: "flex", flexDirection: "column", justifyContent: "center",
-      }}>
-        <div className="app-container" style={{ width: "100%", margin: "0 auto" }}>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-            style={{
-              fontFamily: "var(--serif)",
-              fontSize: "clamp(2.5rem, 5.5vw, 5rem)",
-              lineHeight: 1.05, color: "var(--ink)", letterSpacing: "-0.02em",
-              marginBottom: "1.5rem",
-            }}
-            className="text-balance"
-          >
-            Deep tech.<br />
-            <em style={{ fontStyle: "italic", color: "var(--accent)" }}>Sharp strategy.</em><br />
-            Outcomes that ship.
-          </motion.h1>
+    <section id="top" style={{ overflow: "hidden", position: "relative", zIndex: 1, borderBottom: "1px solid var(--rule)" }}>
+      <div className="app-container hero-inner-container" style={{ padding: 0 }}>
+        <div className="hero-grid-v2">
+          {/* Text content */}
+          <div className="hero-text-part" style={{ padding: "clamp(4rem, 10vh, 8rem) var(--pad)" }}>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+              style={{
+                fontFamily: "var(--serif)", fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
+                lineHeight: 1.05, color: "var(--ink)", letterSpacing: "-0.02em",
+                marginBottom: "1.5rem",
+              }}
+              className="text-balance"
+            >
+              Deep tech.<br />
+              <em style={{ fontStyle: "italic", color: "var(--accent)" }}>Sharp strategy.</em><br />
+              Outcomes that ship.
+            </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
-            style={{ fontSize: "clamp(1rem, 1.25vw, 1.2rem)", color: "var(--ink-mid)", maxWidth: 520, lineHeight: 1.7, marginBottom: "2.5rem" }}
-          >
-            I'm Wani Bisen — a product leader who{" "}
-            <strong style={{ color: "var(--ink)", fontWeight: 600 }}>builds at the frontier of AI, data systems, and business strategy</strong>.
-            {" "}I speak fluent engineer and fluent executive. INSEAD &amp; Wharton MBA, CS foundation, with a proven track record across global tech companies.
-          </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
+              style={{ fontSize: "clamp(1rem, 1.2vw, 1.15rem)", color: "var(--ink-mid)", maxWidth: 520, lineHeight: 1.7, marginBottom: "2.5rem" }}
+            >
+              I'm Wani Bisen — a product leader who{" "}
+              <strong style={{ color: "var(--ink)", fontWeight: 600 }}>builds at the frontier of AI, data systems, and business strategy</strong>.
+              {" "}I speak fluent engineer and fluent executive. INSEAD &amp; Wharton MBA, CS foundation, with a proven track record across global tech companies.
+            </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
-            style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}
-          >
-            <a href="#work" style={btnPrimary}>See my work →</a>
-            <a href="mailto:wanibisen3@gmail.com" style={btnGhost}>wanibisen3@gmail.com</a>
-            <a href="https://www.linkedin.com/in/wanibisen/" target="_blank" rel="noopener noreferrer" style={btnGhost}>LinkedIn ↗</a>
-          </motion.div>
-        </div>
-      </div>
+            <motion.div
+              initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
+              style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}
+            >
+              <a href="#work" style={btnPrimary}>See my work →</a>
+              <a href="mailto:wanibisen3@gmail.com" style={btnGhost}>wanibisen3@gmail.com</a>
+              <a href="https://www.linkedin.com/in/wanibisen/" target="_blank" rel="noopener noreferrer" style={btnGhost}>LinkedIn ↗</a>
+            </motion.div>
+          </div>
 
-      {/* Photo column */}
-      <div style={{
-        position: "relative", overflow: "hidden",
-        background: "var(--rule)", paddingTop: 0,
-        display: "flex", alignItems: "stretch",
-      }}
-        className="hero-image-container"
-      >
-        <img
-          src="/wani-photo.png"
-          alt="Wani Bisen"
-          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 8%", display: "block", filter: "grayscale(8%)" }}
-        />
-        <div style={{
-          position: "absolute", bottom: "1.5rem", left: "1.5rem", right: "1.5rem",
-          background: "rgba(0,0,0,0.2)", backdropFilter: "blur(4px)", padding: "0.6rem 1rem", borderRadius: 8,
-          border: "1px solid rgba(255,255,255,0.1)",
-        }}>
-          <p style={{
-            fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase",
-            color: "#fff", margin: 0,
-          }}>
-            Wani Bisen &nbsp;·&nbsp; PM, AI &amp; LLMs
-          </p>
+          {/* Image content */}
+          <div className="hero-image-part" style={{ position: "relative", overflow: "hidden", background: "var(--rule)" }}>
+            <img
+              src="/wani-photo.png"
+              alt="Wani Bisen"
+              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 8%", display: "block", filter: "grayscale(8%)" }}
+            />
+            <div style={{
+              position: "absolute", bottom: "1.5rem", left: "1.5rem", right: "1.5rem",
+              background: "rgba(0,0,0,0.2)", backdropFilter: "blur(4px)", padding: "0.6rem 1rem", borderRadius: 8,
+              border: "1px solid rgba(255,255,255,0.1)",
+            }}>
+              <p style={{ fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#fff", margin: 0 }}>
+                Wani Bisen &nbsp;·&nbsp; PM, AI &amp; LLMs
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
       <style>{`
-        .hero-grid { display: flex; flex-direction: column; min-height: 90vh; }
-        .hero-text-container { padding: clamp(4rem, 10vh, 7rem) 0; }
-        .hero-image-container { min-height: 45vh; }
+        .hero-grid-v2 { display: grid; grid-template-columns: 1fr; }
+        .hero-image-part { min-height: 48vh; border-top: 1px solid var(--rule); }
         @media (min-width: 900px) {
-          .hero-grid { flex-direction: row; align-items: stretch; }
-          .hero-text-container { flex: 1.25; display: flex; align-items: center; padding: 0; }
-          .hero-text-container .app-container { margin: 0; padding-left: calc((100vw - var(--max)) / 2 + var(--pad)); max-width: none; }
-          .hero-image-container { flex: 0.85; min-height: auto; }
+          .hero-grid-v2 { grid-template-columns: 1.25fr 1fr; border-left: 1px solid var(--rule); border-right: 1px solid var(--rule); }
+          .hero-image-part { min-height: auto; border-top: none; border-left: 1px solid var(--rule); }
         }
       `}</style>
     </section>
