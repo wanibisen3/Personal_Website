@@ -111,44 +111,43 @@ function Hero() {
   return (
     <section id="top" className="hero-grid" style={{ overflow: "hidden", position: "relative", zIndex: 1 }}>
       {/* Text column */}
-      <div style={{
-        padding: "clamp(3rem, 10vh, 6rem) var(--pad)",
+      <div className="hero-text-container" style={{
         display: "flex", flexDirection: "column", justifyContent: "center",
-      }}
-        className="hero-text-container"
-      >
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-          style={{
-            fontFamily: "var(--serif)",
-            fontSize: "clamp(2.5rem, 5vw, 4.8rem)",
-            lineHeight: 1.05, color: "var(--ink)", letterSpacing: "-0.02em",
-            marginBottom: "1.5rem",
-          }}
-          className="text-balance"
-        >
-          Deep tech.<br />
-          <em style={{ fontStyle: "italic", color: "var(--accent)" }}>Sharp strategy.</em><br />
-          Outcomes that ship.
-        </motion.h1>
+      }}>
+        <div className="app-container" style={{ width: "100%", margin: "0 auto" }}>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+            style={{
+              fontFamily: "var(--serif)",
+              fontSize: "clamp(2.5rem, 5.5vw, 5rem)",
+              lineHeight: 1.05, color: "var(--ink)", letterSpacing: "-0.02em",
+              marginBottom: "1.5rem",
+            }}
+            className="text-balance"
+          >
+            Deep tech.<br />
+            <em style={{ fontStyle: "italic", color: "var(--accent)" }}>Sharp strategy.</em><br />
+            Outcomes that ship.
+          </motion.h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
-          style={{ fontSize: "clamp(1rem, 1.2vw, 1.15rem)", color: "var(--ink-mid)", maxWidth: 520, lineHeight: 1.7, marginBottom: "2.5rem" }}
-        >
-          I'm Wani Bisen — a product leader who{" "}
-          <strong style={{ color: "var(--ink)", fontWeight: 600 }}>builds at the frontier of AI, data systems, and business strategy</strong>.
-          {" "}I speak fluent engineer and fluent executive. INSEAD &amp; Wharton MBA, CS foundation, with a proven track record across global tech companies.
-        </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
+            style={{ fontSize: "clamp(1rem, 1.25vw, 1.2rem)", color: "var(--ink-mid)", maxWidth: 520, lineHeight: 1.7, marginBottom: "2.5rem" }}
+          >
+            I'm Wani Bisen — a product leader who{" "}
+            <strong style={{ color: "var(--ink)", fontWeight: 600 }}>builds at the frontier of AI, data systems, and business strategy</strong>.
+            {" "}I speak fluent engineer and fluent executive. INSEAD &amp; Wharton MBA, CS foundation, with a proven track record across global tech companies.
+          </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
-          style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}
-        >
-          <a href="#work" style={btnPrimary}>See my work →</a>
-          <a href="mailto:wanibisen3@gmail.com" style={btnGhost}>wanibisen3@gmail.com</a>
-          <a href="https://www.linkedin.com/in/wanibisen/" target="_blank" rel="noopener noreferrer" style={btnGhost}>LinkedIn ↗</a>
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
+            style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}
+          >
+            <a href="#work" style={btnPrimary}>See my work →</a>
+            <a href="mailto:wanibisen3@gmail.com" style={btnGhost}>wanibisen3@gmail.com</a>
+            <a href="https://www.linkedin.com/in/wanibisen/" target="_blank" rel="noopener noreferrer" style={btnGhost}>LinkedIn ↗</a>
+          </motion.div>
+        </div>
       </div>
 
       {/* Photo column */}
@@ -180,15 +179,13 @@ function Hero() {
 
       <style>{`
         .hero-grid { display: flex; flex-direction: column; min-height: 90vh; }
+        .hero-text-container { padding: clamp(4rem, 10vh, 7rem) 0; }
         .hero-image-container { min-height: 45vh; }
-        @media (min-width: 800px) {
+        @media (min-width: 900px) {
           .hero-grid { flex-direction: row; align-items: stretch; }
-          .hero-text-container { 
-            flex: 1.2; 
-            padding-left: calc(max((100vw - var(--max)) / 2, 0px) + var(--pad));
-            padding-right: 3rem;
-          }
-          .hero-image-container { flex: 0.9; min-height: auto; }
+          .hero-text-container { flex: 1.25; display: flex; align-items: center; padding: 0; }
+          .hero-text-container .app-container { margin: 0; padding-left: calc((100vw - var(--max)) / 2 + var(--pad)); max-width: none; }
+          .hero-image-container { flex: 0.85; min-height: auto; }
         }
       `}</style>
     </section>
