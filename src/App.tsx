@@ -272,8 +272,15 @@ function Portfolio({ projects }: { projects: Project[] }) {
         {featured && (
           <div style={{
             marginTop: "3rem", border: "1px solid var(--rule)", borderRadius: 16,
-            overflow: "hidden", background: "#fff",
+            overflow: "hidden", background: "#fff", position: "relative",
           }}>
+            {featured.link && (
+              <a href={featured.link} target="_blank" rel="noopener noreferrer" 
+                style={{ ...btnGhost, fontSize: "0.82rem", padding: "0.5rem 1rem", position: "absolute", top: "1.5rem", right: "1.5rem", zIndex: 10 }}
+              >
+                View on GitHub ↗
+              </a>
+            )}
             <div style={{
               padding: "2.5rem 3rem", borderBottom: "1px solid var(--rule)",
               display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "2rem",
@@ -320,11 +327,6 @@ function Portfolio({ projects }: { projects: Project[] }) {
                   </span>
                 ))}
               </div>
-              {featured.link && (
-                <a href={featured.link} target="_blank" rel="noopener noreferrer" style={{ ...btnGhost, fontSize: "0.82rem", padding: "0.55rem 1.1rem" }}>
-                  View on GitHub ↗
-                </a>
-              )}
             </div>
           </div>
         )}
