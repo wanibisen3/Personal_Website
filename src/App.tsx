@@ -355,7 +355,7 @@ function Portfolio({ projects }: { projects: Project[] }) {
                   </p>
                   <h3 style={{ fontSize: "1.1rem", fontWeight: 600, color: "var(--ink)", letterSpacing: "-0.01em" }}>{proj.title}</h3>
                 </div>
-                <span className="project-arrow" style={{ fontSize: "1.2rem", color: "var(--ink-soft)", lineHeight: 1 }}>↗</span>
+                <span className="project-arrow" style={{ fontSize: "1.2rem", color: "var(--ink)", lineHeight: 1 }}>↗</span>
               </div>
               <p style={{ fontSize: "0.95rem", color: "var(--ink-mid)", lineHeight: 1.65 }}>{proj.description}</p>
               <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginTop: "0.5rem" }}>
@@ -412,8 +412,8 @@ function Experience({ experience }: { experience: Experience[] }) {
                 {exp.transition ? (
                   <p style={{ fontSize: "1.2rem", fontWeight: 600, color: "var(--ink)", marginBottom: "0.75rem", letterSpacing: "-0.01em" }}>
                     Senior Software Development Engineer{" "}
-                    <span style={{ color: "var(--rule)", margin: "0 0.3rem" }}>→</span>
-                    <span style={{ color: "var(--accent)" }}>Product Owner</span>
+                    <span style={{ color: "var(--ink)", margin: "0 0.3rem" }}>→</span>
+                    <span style={{ color: "var(--ink)" }}>Product Owner</span>
                   </p>
                 ) : (
                   <p style={{ fontSize: "1.2rem", fontWeight: 600, color: "var(--ink)", marginBottom: "0.75rem", letterSpacing: "-0.01em" }}>{exp.role}</p>
