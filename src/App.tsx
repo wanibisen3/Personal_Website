@@ -332,6 +332,7 @@ function Portfolio({ projects }: { projects: Project[] }) {
               target="_blank"
               rel="noopener noreferrer"
               style={{
+                position: "relative",
                 border: "1px solid var(--rule)",
                 borderLeft: idx === 0 ? "3px solid var(--accent)" : "1px solid var(--rule)",
                 borderRadius: 12, padding: "2rem", background: "#fff",
@@ -346,7 +347,7 @@ function Portfolio({ projects }: { projects: Project[] }) {
                   </p>
                   <h3 style={{ fontSize: "1.1rem", fontWeight: 600, color: "var(--ink)", letterSpacing: "-0.01em" }}>{proj.title}</h3>
                 </div>
-                <span style={{ fontSize: "1.2rem", color: "var(--ink-soft)", lineHeight: 1 }}>↗</span>
+                <span className="project-arrow" style={{ fontSize: "1.2rem", color: "var(--ink-soft)", lineHeight: 1 }}>↗</span>
               </div>
               <p style={{ fontSize: "0.95rem", color: "var(--ink-mid)", lineHeight: 1.65 }}>{proj.description}</p>
               <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginTop: "0.5rem" }}>
