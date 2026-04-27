@@ -110,11 +110,10 @@ function Nav() {
 function Hero() {
   return (
     <section id="top" className="hero-grid" style={{ overflow: "hidden", position: "relative", zIndex: 1 }}>
-      {/* Text column - Order 1 on all sizes */}
+      {/* Text column */}
       <div style={{
-        padding: "clamp(4rem, 12vh, 8rem) var(--pad)",
+        padding: "clamp(3rem, 10vh, 6rem) var(--pad)",
         display: "flex", flexDirection: "column", justifyContent: "center",
-        gridRow: "1",
       }}
         className="hero-text-container"
       >
@@ -122,7 +121,7 @@ function Hero() {
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
           style={{
             fontFamily: "var(--serif)",
-            fontSize: "clamp(2.5rem, 5.5vw, 5rem)",
+            fontSize: "clamp(2.5rem, 5vw, 4.8rem)",
             lineHeight: 1.05, color: "var(--ink)", letterSpacing: "-0.02em",
             marginBottom: "1.5rem",
           }}
@@ -135,7 +134,7 @@ function Hero() {
 
         <motion.p
           initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
-          style={{ fontSize: "clamp(1rem, 1.25vw, 1.2rem)", color: "var(--ink-mid)", maxWidth: 540, lineHeight: 1.7, marginBottom: "2.5rem" }}
+          style={{ fontSize: "clamp(1rem, 1.2vw, 1.15rem)", color: "var(--ink-mid)", maxWidth: 520, lineHeight: 1.7, marginBottom: "2.5rem" }}
         >
           I'm Wani Bisen — a product leader who{" "}
           <strong style={{ color: "var(--ink)", fontWeight: 600 }}>builds at the frontier of AI, data systems, and business strategy</strong>.
@@ -152,34 +151,40 @@ function Hero() {
         </motion.div>
       </div>
 
-      {/* Photo column - Order 2 on mobile, floating/right on desktop */}
+      {/* Photo column */}
       <div style={{
         position: "relative", overflow: "hidden",
         background: "var(--rule)", paddingTop: 0,
         display: "flex", alignItems: "stretch",
-        gridRow: "2",
       }}
         className="hero-image-container"
       >
         <img
           src="/wani-photo.png"
           alt="Wani Bisen"
-          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 8%", display: "block", filter: "grayscale(8%)", minHeight: "50vh" }}
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 8%", display: "block", filter: "grayscale(8%)" }}
         />
-        <p style={{
+        <div style={{
           position: "absolute", bottom: "1.5rem", left: "1.5rem", right: "1.5rem",
-          fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase",
-          color: "#fff", textShadow: "0 1px 8px rgba(0,0,0,0.4)",
+          background: "rgba(0,0,0,0.2)", backdropFilter: "blur(4px)", padding: "0.6rem 1rem", borderRadius: 8,
+          border: "1px solid rgba(255,255,255,0.1)",
         }}>
-          Wani Bisen &nbsp;·&nbsp; PM, AI &amp; LLMs
-        </p>
+          <p style={{
+            fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase",
+            color: "#fff", margin: 0,
+          }}>
+            Wani Bisen &nbsp;·&nbsp; PM, AI &amp; LLMs
+          </p>
+        </div>
       </div>
 
       <style>{`
-        @media (min-width: 800px) {
-          .hero-grid { grid-template-columns: 1.25fr 1fr; }
-          .hero-text-container { grid-column: 1; grid-row: 1; padding-left: calc(max((100vw - 1080px) / 2, var(--pad))); }
-          .hero-image-container { grid-column: 2; grid-row: 1; padding-top: 60px; min-height: 92vh; }
+        .hero-grid { display: flex; flex-direction: column; min-height: 90vh; }
+        .hero-image-container { min-height: 45vh; }
+        @media (min-width: 720px) {
+          .hero-grid { flex-direction: row; align-items: stretch; }
+          .hero-text-container { flex: 1.2; padding-left: calc(max((100vw - 1120px) / 2, var(--pad))); }
+          .hero-image-container { flex: 1; min-height: auto; }
         }
       `}</style>
     </section>
