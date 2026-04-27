@@ -276,9 +276,10 @@ function Portfolio({ projects }: { projects: Project[] }) {
           }}>
             {featured.link && (
               <a href={featured.link} target="_blank" rel="noopener noreferrer" 
-                style={{ ...btnGhost, fontSize: "0.82rem", padding: "0.5rem 1rem", position: "absolute", top: "1.5rem", right: "1.5rem", zIndex: 10 }}
+                className="project-arrow"
+                style={{ fontSize: "1.2rem", color: "var(--ink)", textDecoration: "none" }}
               >
-                View on GitHub ↗
+                ↗
               </a>
             )}
             <div style={{
