@@ -5,25 +5,17 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { 
-  Briefcase, 
-  Code, 
-  Mail, 
-  Send, 
-  ChevronRight, 
-  ExternalLink, 
-  CheckCircle2,
-  AlertCircle,
-  Terminal,
-  Linkedin
-} from "lucide-react";
-import FloatingGeometry from "./FloatingGeometry";
+import { Send, CheckCircle2, AlertCircle, ExternalLink, ChevronRight } from "lucide-react";
+
+/* ─── Types ──────────────────────────────────────────────────────────────── */
 
 interface Experience {
   company: string;
   role: string;
   period: string;
   highlights: string[];
+  transition?: boolean;
+  statHighlight?: string;
 }
 
 interface Project {
@@ -32,21 +24,503 @@ interface Project {
   status: string;
   tags: string[];
   link?: string;
+  featured?: boolean;
+  problem?: string;
+  approach?: string;
+  outcome?: string;
 }
+
+/* ─── Shared style helpers ───────────────────────────────────────────────── */
+
+const S = {
+  container: {
+    maxWidth: "1080px",
+    margin: "0 auto",
+    padding: "0 clamp(1.5rem, 5vw, 4rem)",
+    position: "relative" as const,
+    zIndex: 1,
+  },
+  sectionLabel: {
+    fontSize: "0.72rem",
+    fontWeight: 600,
+    letterSpacing: "0.12em",
+    textTransform: "uppercase" as const,
+    color: "var(--accent)",
+    marginBottom: "1rem",
+  },
+  sectionTitle: {
+    fontFamily: "var(--serif)",
+    fontSize: "clamp(2rem, 4vw, 3rem)",
+    lineHeight: 1.1,
+    color: "var(--ink)",
+    letterSpacing: "-0.02em",
+    marginBottom: "1rem",
+  },
+  rule: {
+    border: "none",
+    borderTop: "1px solid var(--rule)",
+    margin: "0 clamp(1.5rem, 5vw, 4rem)",
+    position: "relative" as const,
+    zIndex: 1,
+  },
+};
+
+/* ─── Nav ────────────────────────────────────────────────────────────────── */
+
+function Nav() {
+  return (
+    <nav style={{
+      position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
+      background: "color-mix(in oklch, var(--bg) 85%, transparent)",
+      backdropFilter: "blur(16px)",
+      borderBottom: "1px solid var(--rule)",
+    }}>
+      <div style={{
+        ...S.container,
+        height: 60,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: "0 clamp(1.5rem, 5vw, 4rem)",
+      }}>
+        <a href="#top" style={{ fontFamily: "var(--serif)", fontSize: "1.05rem", color: "var(--ink)", textDecoration: "none" }}>
+          Wani Bisen
+        </a>
+        <div style={{ display: "flex", alignItems: "center", gap: "0.25rem" }}>
+          {[{ label: "Work", href: "#work" }, { label: "Experience", href: "#experience" }].map(item => (
+            <a key={item.href} href={item.href} style={{
+              fontSize: "0.875rem", fontWeight: 500, color: "var(--ink-mid)",
+              textDecoration: "none", padding: "0.4rem 0.85rem", borderRadius: 99,
+              transition: "background 0.15s, color 0.15s",
+            }}
+              onMouseEnter={e => { (e.target as HTMLElement).style.background = "var(--accent-bg)"; (e.target as HTMLElement).style.color = "var(--accent)"; }}
+              onMouseLeave={e => { (e.target as HTMLElement).style.background = "transparent"; (e.target as HTMLElement).style.color = "var(--ink-mid)"; }}
+            >
+              {item.label}
+            </a>
+          ))}
+          <a href="#contact" style={{
+            fontSize: "0.875rem", fontWeight: 600, color: "var(--bg)",
+            textDecoration: "none", padding: "0.45rem 1.1rem", borderRadius: 8,
+            background: "var(--ink)", marginLeft: "0.5rem", transition: "background 0.15s",
+          }}
+            onMouseEnter={e => { (e.target as HTMLElement).style.background = "var(--accent)"; }}
+            onMouseLeave={e => { (e.target as HTMLElement).style.background = "var(--ink)"; }}
+          >
+            Let's talk
+          </a>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+/* ─── Hero ───────────────────────────────────────────────────────────────── */
+
+function Hero() {
+  return (
+    <section id="top" style={{
+      minHeight: "92vh",
+      display: "grid",
+      gridTemplateColumns: "1fr 42%",
+      overflow: "hidden",
+      position: "relative",
+      zIndex: 1,
+    }}>
+      {/* Text column */}
+      <div style={{
+        padding: "120px clamp(1.5rem, 5vw, 4rem) 80px calc(max((100vw - 1080px) / 2, clamp(1.5rem, 5vw, 4rem)))",
+        display: "flex", flexDirection: "column", justifyContent: "center",
+      }}>
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+          style={{
+            fontFamily: "var(--serif)",
+            fontSize: "clamp(2.8rem, 4.5vw, 5rem)",
+            lineHeight: 1.05, color: "var(--ink)", letterSpacing: "-0.02em",
+            marginBottom: "1.5rem", textWrap: "balance" as any,
+          }}
+        >
+          Deep tech.<br />
+          <em style={{ fontStyle: "italic", color: "var(--accent)" }}>Sharp strategy.</em><br />
+          Outcomes that ship.
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
+          style={{ fontSize: "clamp(1rem, 1.5vw, 1.1rem)", color: "var(--ink-mid)", maxWidth: 500, lineHeight: 1.7, marginBottom: "2.5rem" }}
+        >
+          I'm Wani Bisen — a product leader who{" "}
+          <strong style={{ color: "var(--ink)", fontWeight: 600 }}>builds at the frontier of AI, data systems, and business strategy</strong>.
+          {" "}I speak fluent engineer and fluent executive. INSEAD &amp; Wharton MBA, CS foundation, 8 years across global tech companies.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
+          style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}
+        >
+          <a href="#work" style={btnPrimary}>See my work →</a>
+          <a href="mailto:wanibisen3@gmail.com" style={btnGhost}>wanibisen3@gmail.com</a>
+          <a href="https://www.linkedin.com/in/wanibisen/" target="_blank" rel="noopener noreferrer" style={btnGhost}>LinkedIn ↗</a>
+        </motion.div>
+      </div>
+
+      {/* Photo column */}
+      <div style={{
+        position: "relative", overflow: "hidden",
+        background: "var(--rule)", paddingTop: 60,
+        display: "flex", alignItems: "stretch",
+      }}>
+        <img
+          src="/wani-photo.png"
+          alt="Wani Bisen"
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 8%", display: "block", filter: "grayscale(8%)" }}
+        />
+        <p style={{
+          position: "absolute", bottom: "1.5rem", left: "1.5rem", right: "1.5rem",
+          fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase",
+          color: "#fff", textShadow: "0 1px 8px rgba(0,0,0,0.4)",
+        }}>
+          Wani Bisen &nbsp;·&nbsp; PM, AI &amp; LLMs
+        </p>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Button styles ──────────────────────────────────────────────────────── */
+
+const btnBase: React.CSSProperties = {
+  display: "inline-flex", alignItems: "center", gap: "0.5rem",
+  fontFamily: "var(--sans)", fontSize: "0.9rem", fontWeight: 600,
+  textDecoration: "none", padding: "0.75rem 1.5rem", borderRadius: 8,
+  transition: "all 0.15s", cursor: "pointer", border: "none",
+};
+const btnPrimary: React.CSSProperties = { ...btnBase, background: "var(--ink)", color: "var(--bg)" };
+const btnGhost: React.CSSProperties = { ...btnBase, background: "transparent", color: "var(--ink-mid)", border: "1px solid var(--rule)" };
+
+/* ─── Credibility Strip ──────────────────────────────────────────────────── */
+
+function CredStrip() {
+  const companies = ["Fivetran", "ZS Associates", "Enprivacy", "INSEAD", "The Wharton School"];
+  return (
+    <div style={{ padding: "32px 0", borderTop: "1px solid var(--rule)", borderBottom: "1px solid var(--rule)", position: "relative", zIndex: 1 }}>
+      <div style={S.container}>
+        <p style={{ fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--ink-soft)", marginBottom: "1.2rem" }}>
+          Previously
+        </p>
+        <div style={{ display: "flex", alignItems: "center", gap: "2.5rem", flexWrap: "wrap" }}>
+          {companies.map((c, i) => (
+            <React.Fragment key={c}>
+              <span style={{ fontFamily: "var(--serif)", fontSize: "1.05rem", color: "var(--ink-soft)", opacity: 0.65 }}>{c}</span>
+              {i < companies.length - 1 && <span style={{ width: 1, height: 20, background: "var(--rule)", flexShrink: 0 }} />}
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Metrics ────────────────────────────────────────────────────────────── */
+
+function Metrics() {
+  const stats = [
+    { num: "60", unit: "%", label: "Reduction in release cycle\ntime at ZS Associates" },
+    { num: "10", unit: "+", label: "Engineers led across global\ncross-functional teams" },
+    { num: "4",  unit: "",  label: "0-to-1 products shipped\nfrom concept to live users" },
+  ];
+  return (
+    <section style={{ padding: "80px 0", position: "relative", zIndex: 1 }}>
+      <div style={S.container}>
+        <p style={S.sectionLabel}>By the numbers</p>
+        <h2 style={S.sectionTitle}>Impact that ships.</h2>
+        <div style={{
+          display: "grid", gridTemplateColumns: "repeat(3, 1fr)",
+          gap: 1, background: "var(--rule)",
+          border: "1px solid var(--rule)", borderRadius: 12, overflow: "hidden", marginTop: "3rem",
+        }}>
+          {stats.map(s => (
+            <div key={s.label} style={{ background: "#fff", padding: "2rem 2.5rem", textAlign: "center" }}>
+              <div style={{ fontFamily: "var(--serif)", fontSize: "3rem", lineHeight: 1, letterSpacing: "-0.03em", marginBottom: "0.4rem" }}>
+                <span style={{ color: "var(--accent)" }}>{s.num}</span>{s.unit}
+              </div>
+              <div style={{ fontSize: "0.82rem", color: "var(--ink-mid)", fontWeight: 500, lineHeight: 1.4, whiteSpace: "pre-line" }}>{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Portfolio ──────────────────────────────────────────────────────────── */
+
+function Portfolio({ projects }: { projects: Project[] }) {
+  const featured = projects.find(p => p.featured);
+  const rest = projects.filter(p => !p.featured);
+
+  return (
+    <section id="work" style={{ padding: "80px 0", position: "relative", zIndex: 1 }}>
+      <div style={S.container}>
+        <p style={S.sectionLabel}>Selected work</p>
+        <h2 style={S.sectionTitle}>Product portfolio.</h2>
+        <p style={{ fontSize: "1.05rem", color: "var(--ink-mid)", maxWidth: 560, lineHeight: 1.65 }}>
+          Four products built from scratch. Each one started with a structural problem — and ended with something that actually shipped.
+        </p>
+
+        {/* Featured project */}
+        {featured && (
+          <div style={{
+            marginTop: "3rem", border: "1px solid var(--rule)", borderRadius: 16,
+            overflow: "hidden", background: "#fff",
+          }}>
+            <div style={{
+              padding: "2.5rem 3rem", borderBottom: "1px solid var(--rule)",
+              display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "2rem",
+            }}>
+              <div style={{ fontFamily: "var(--serif)", fontSize: "4rem", lineHeight: 1, color: "var(--rule)", fontStyle: "italic", flexShrink: 0, userSelect: "none" }}>01</div>
+              <div style={{ flex: 1 }}>
+                <p style={{ fontSize: "0.75rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--accent)", marginBottom: "0.6rem" }}>AI Workflow Infrastructure</p>
+                <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.75rem", lineHeight: 1.2, color: "var(--ink)", letterSpacing: "-0.02em", marginBottom: "0.75rem" }}>{featured.title}</h3>
+                <p style={{ fontSize: "1rem", color: "var(--ink-mid)", lineHeight: 1.65 }}>{featured.description}</p>
+              </div>
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", borderBottom: "1px solid var(--rule)" }}>
+              {[
+                { heading: "The Problem", text: featured.problem },
+                { heading: "My Approach", text: featured.approach },
+                { heading: "The Outcome", text: featured.outcome },
+              ].map((col, i) => (
+                <div key={i} style={{
+                  padding: "2rem 2.5rem",
+                  borderRight: i < 2 ? "1px solid var(--rule)" : "none",
+                }}>
+                  <p style={{ fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--ink-soft)", marginBottom: "0.75rem" }}>{col.heading}</p>
+                  <p style={{ fontSize: "0.9rem", color: "var(--ink-mid)", lineHeight: 1.7 }}>{col.text}</p>
+                </div>
+              ))}
+            </div>
+            <div style={{ padding: "1.5rem 3rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
+              <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+                {featured.tags.map((tag, i) => (
+                  <span key={i} style={{
+                    fontSize: "0.75rem", fontWeight: 600, padding: "0.3rem 0.75rem", borderRadius: 99,
+                    ...(i === 0
+                      ? { color: "var(--accent)", background: "var(--accent-bg)", border: "1px solid oklch(88% 0.04 32)" }
+                      : { color: "var(--ink-mid)", background: "oklch(94% 0.005 250)", border: "1px solid var(--rule)" }),
+                  }}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              {featured.link && (
+                <a href={featured.link} target="_blank" rel="noopener noreferrer" style={{ ...btnGhost, fontSize: "0.82rem", padding: "0.55rem 1.1rem" }}>
+                  View on GitHub ↗
+                </a>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Rest of projects */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginTop: "1.5rem" }}>
+          {rest.map((proj, idx) => (
+            <a
+              key={idx}
+              href={proj.link || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                border: `1px solid ${idx === 0 ? "var(--accent)" : "var(--rule)"}`,
+                borderLeft: idx === 0 ? "3px solid var(--accent)" : "1px solid var(--rule)",
+                borderRadius: 12, padding: "2rem", background: "#fff",
+                textDecoration: "none", display: "flex", flexDirection: "column", gap: "0.75rem",
+                transition: "border-color 0.15s, box-shadow 0.15s",
+              }}
+            >
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                <div>
+                  <p style={{ ...S.sectionLabel, fontSize: "0.65rem", marginBottom: "0.4rem" }}>
+                    {String(idx + 2).padStart(2, "0")} — {idx === 0 ? "Decision Intelligence" : idx === 1 ? "Community Tool" : "Fintech Infrastructure"}
+                  </p>
+                  <h3 style={{ fontSize: "1.05rem", fontWeight: 600, color: "var(--ink)" }}>{proj.title}</h3>
+                </div>
+                <span style={{ fontSize: "1.2rem", color: "var(--ink-soft)", lineHeight: 1 }}>↗</span>
+              </div>
+              <p style={{ fontSize: "0.9rem", color: "var(--ink-mid)", lineHeight: 1.65 }}>{proj.description}</p>
+              <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginTop: "0.25rem" }}>
+                {(idx === 0 ? [{ accent: true, label: "Live product" }, ...proj.tags.map(t => ({ accent: false, label: t }))] : proj.tags.map(t => ({ accent: false, label: t }))).map((tag, i) => (
+                  <span key={i} style={{
+                    fontSize: "0.75rem", fontWeight: 600, padding: "0.3rem 0.75rem", borderRadius: 99,
+                    ...(tag.accent
+                      ? { color: "var(--accent)", background: "var(--accent-bg)", border: "1px solid oklch(88% 0.04 32)" }
+                      : { color: "var(--ink-mid)", background: "oklch(94% 0.005 250)", border: "1px solid var(--rule)" }),
+                  }}>
+                    {tag.label}
+                  </span>
+                ))}
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Experience ─────────────────────────────────────────────────────────── */
+
+function Experience({ experience }: { experience: Experience[] }) {
+  return (
+    <section id="experience" style={{ padding: "80px 0", position: "relative", zIndex: 1 }}>
+      <div style={S.container}>
+        <p style={S.sectionLabel}>Career</p>
+        <h2 style={S.sectionTitle}>8 years of building.</h2>
+        <p style={{ fontSize: "1.05rem", color: "var(--ink-mid)", maxWidth: 560, lineHeight: 1.65 }}>
+          From quality engineering to senior SDE to product leadership — a deliberate progression from technical depth to strategic breadth.
+        </p>
+
+        <div style={{ marginTop: "3rem" }}>
+          {experience.map((exp, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, x: -16 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              style={{
+                display: "grid",
+                gridTemplateColumns: "200px 1fr",
+                gap: "3rem",
+                padding: "2.5rem 0",
+                borderTop: "1px solid var(--rule)",
+                ...(idx === experience.length - 1 ? { borderBottom: "1px solid var(--rule)" } : {}),
+              }}
+            >
+              <div style={{ paddingTop: "0.2rem" }}>
+                <p style={{ fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.04em", color: "var(--ink-soft)", marginBottom: "0.35rem" }}>{exp.period}</p>
+                <p style={{ fontSize: "0.85rem", fontWeight: 600, color: "var(--accent)" }}>{exp.company}</p>
+              </div>
+              <div>
+                {exp.transition ? (
+                  <p style={{ fontSize: "1.1rem", fontWeight: 600, color: "var(--ink)", marginBottom: "0.75rem" }}>
+                    Senior Software Development Engineer{" "}
+                    <span style={{ color: "var(--rule)", margin: "0 0.3rem" }}>→</span>
+                    <span style={{ color: "var(--accent)" }}>Product Owner</span>
+                  </p>
+                ) : (
+                  <p style={{ fontSize: "1.1rem", fontWeight: 600, color: "var(--ink)", marginBottom: "0.75rem" }}>{exp.role}</p>
+                )}
+                <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                  {exp.highlights.map((h, i) => (
+                    <li key={i} style={{ fontSize: "0.9rem", color: "var(--ink-mid)", lineHeight: 1.65, paddingLeft: "1.1rem", position: "relative" }}>
+                      <span style={{ position: "absolute", left: 0, color: "var(--rule)", fontSize: "0.75rem", top: "0.25rem" }}>—</span>
+                      {exp.statHighlight && h.startsWith(exp.statHighlight.split(" ")[0]) ? (
+                        <span>
+                          <strong style={{ color: "var(--ink)", fontWeight: 700 }}>{exp.statHighlight}</strong>
+                          {h.slice(exp.statHighlight.length)}
+                        </span>
+                      ) : h}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Contact ────────────────────────────────────────────────────────────── */
+
+function Contact() {
+  const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+
+  const handleContact = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormStatus("submitting");
+    const data = Object.fromEntries(new FormData(e.currentTarget).entries());
+    try {
+      const res = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
+      setFormStatus(res.ok ? "success" : "error");
+    } catch {
+      setFormStatus("error");
+    }
+  };
+
+  return (
+    <div id="contact" style={{ background: "var(--bg-dark)", padding: "100px clamp(1.5rem, 5vw, 4rem)", position: "relative", zIndex: 1 }}>
+      <div style={{ ...S.container, display: "grid", gridTemplateColumns: "1fr auto", gap: "4rem", alignItems: "center", padding: 0, maxWidth: 1080, margin: "0 auto" }}>
+        <div>
+          <h2 style={{
+            fontFamily: "var(--serif)", fontSize: "clamp(2.5rem, 5vw, 4rem)", lineHeight: 1.1,
+            color: "#fff", letterSpacing: "-0.03em", marginBottom: "1rem",
+          }}>
+            Building something<br />
+            <em style={{ fontStyle: "italic", color: "var(--accent)" }}>hard to ship?</em>
+          </h2>
+          <p style={{ fontSize: "1rem", color: "oklch(70% 0.01 250)", lineHeight: 1.65, maxWidth: 460 }}>
+            I work best on problems where technical complexity and strategic ambiguity collide. If you're building at that intersection — let's talk.
+          </p>
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", alignItems: "flex-end" }}>
+          <a href="mailto:wanibisen3@gmail.com" style={{ ...btnBase, background: "#fff", color: "var(--ink)", fontSize: "1rem", padding: "0.9rem 2rem" }}>
+            Email me directly
+          </a>
+          <a href="https://www.linkedin.com/in/wanibisen/" target="_blank" rel="noopener noreferrer" style={{ ...btnBase, background: "transparent", color: "oklch(70% 0.01 250)", border: "1px solid oklch(30% 0.01 250)", fontSize: "0.85rem" }}>
+            Connect on LinkedIn ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Footer ─────────────────────────────────────────────────────────────── */
+
+function Footer() {
+  return (
+    <footer style={{
+      background: "var(--bg-dark)",
+      borderTop: "1px solid oklch(22% 0.01 250)",
+      padding: "2rem clamp(1.5rem, 5vw, 4rem)",
+      position: "relative", zIndex: 1,
+    }}>
+      <div style={{ maxWidth: 1080, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
+        <span style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: "0.95rem", color: "oklch(55% 0.01 250)" }}>Wani Bisen</span>
+        <span style={{ fontSize: "0.78rem", color: "oklch(40% 0.01 250)" }}>Open to Senior PM, Head of Product roles</span>
+      </div>
+    </footer>
+  );
+}
+
+/* ─── Loading spinner ────────────────────────────────────────────────────── */
+
+function Loader() {
+  return (
+    <div style={{ minHeight: "100vh", background: "var(--bg)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <motion.div
+        animate={{ rotate: 360 }}
+        transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+        style={{ width: 32, height: 32, border: "2px solid var(--accent)", borderTopColor: "transparent", borderRadius: "50%" }}
+      />
+    </div>
+  );
+}
+
+/* ─── App ────────────────────────────────────────────────────────────────── */
 
 export default function App() {
   const [experience, setExperience] = useState<Experience[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
-  const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
   useEffect(() => {
-    const fetchData = async () => {
+    const load = async () => {
       try {
-        const [expRes, projRes] = await Promise.all([
-          fetch("/api/experience"),
-          fetch("/api/projects")
-        ]);
+        const [expRes, projRes] = await Promise.all([fetch("/api/experience"), fetch("/api/projects")]);
         setExperience(await expRes.json());
         setProjects(await projRes.json());
       } catch (err) {
@@ -55,353 +529,23 @@ export default function App() {
         setLoading(false);
       }
     };
-    fetchData();
+    load();
   }, []);
 
-  const handleContact = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setFormStatus("submitting");
-    const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (res.ok) setFormStatus("success");
-      else setFormStatus("error");
-    } catch (err) {
-      setFormStatus("error");
-    }
-  };
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <motion.div 
-          animate={{ rotate: 360 }}
-          transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
-          className="w-8 h-8 border-2 border-[#D97B66] border-t-transparent rounded-full"
-        />
-      </div>
-    );
-  }
+  if (loading) return <Loader />;
 
   return (
-    <div className="min-h-screen bg-white text-slate-800 font-sans selection:bg-[#FADBD8] relative isolate overflow-hidden">
-      {/* Animated Background Blobs */}
-      <div
-        aria-hidden="true"
-        className="site-background fixed inset-0 pointer-events-none z-0 overflow-hidden"
-      >
-        <div className="site-orb site-orb--warm top-[-6rem] left-[-10rem] h-[30rem] w-[30rem]" />
-        <div className="site-orb site-orb--cool top-[4rem] right-[-8rem] h-[28rem] w-[28rem] animation-delay-2000" />
-        <div className="site-orb site-orb--rose bottom-[-10rem] left-[22%] h-[32rem] w-[32rem] animation-delay-4000" />
-      </div>
-
-      {/* 3D Floating Geometry */}
-      <FloatingGeometry />
-
-      {/* Sticky Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-xl border-b border-slate-200/50 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 h-16 flex items-center justify-center">
-          <div className="flex items-center gap-2 md:gap-4">
-            {[
-              { label: "About", href: "#about" },
-              { label: "Portfolio", href: "#projects" },
-              { label: "Approach", href: "#approach" },
-              { label: "Experience", href: "#experience" },
-            ].map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="px-4 md:px-5 py-2 rounded-full text-base font-semibold text-slate-600 hover:text-[#D97B66] hover:bg-[#FADBD8]/20 transition-all"
-              >
-                {item.label}
-              </a>
-            ))}
-            <a
-              href="#contact"
-              className="ml-2 px-6 py-2.5 rounded-full text-base font-bold text-white bg-[#D97B66] hover:bg-[#c56a57] transition-all shadow-md hover:shadow-lg"
-            >
-              Let's Connect
-            </a>
-          </div>
-        </div>
-      </nav>
-
-      {/* Header */}
-      <header id="about" className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 pt-28 md:pt-32 pb-8 md:pb-12 relative z-10">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-12 md:gap-6 lg:gap-8">
-          <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="min-w-0 flex-1 space-y-6"
-        >
-          <div className="inline-flex items-start md:items-center gap-2 px-4 py-2 md:py-1.5 rounded-2xl md:rounded-full bg-[#FADBD8]/30 border border-[#D97B66]/20 text-[#D97B66] text-sm font-semibold tracking-wide">
-            <Terminal size={14} className="shrink-0 mt-0.5 md:mt-0" />
-            <span>INSEAD x Wharton MBA | Product Strategy | Computer Science Foundation</span>
-          </div>
-          <div className="flex items-end gap-3 md:gap-4 lg:gap-5 mt-4 mb-6">
-            <h1 className="text-5xl md:text-[6.25rem] lg:text-[7.5rem] font-black tracking-tight text-slate-900 leading-none md:whitespace-nowrap">
-              Wani <span className="text-[#D97B66]">Bisen</span>
-            </h1>
-            <a 
-              href="https://www.linkedin.com/in/wanibisen/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="shrink-0 p-2.5 md:p-3 rounded-full bg-[#0A66C2]/10 hover:bg-[#0A66C2]/20 border border-[#0A66C2]/20 text-[#0A66C2] transition-all shadow-sm hover:shadow-md mb-1 md:mb-3 lg:mb-4"
-              title="LinkedIn Profile"
-            >
-              <Linkedin size={24} className="md:w-7 md:h-7 lg:w-8 lg:h-8" strokeWidth={2} />
-            </a>
-          </div>
-            <p className="text-xl md:text-2xl text-slate-500 max-w-2xl leading-relaxed font-medium">
-              Building scalable products at the intersection of deep technology and business strategy. I turn complex architectures into measurable outcomes and market-leading user experiences.
-            </p>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="md:w-[32%] lg:w-[30%] flex justify-center md:justify-end shrink-0 md:translate-x-10 lg:translate-x-16"
-          >
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#FADBD8] to-blue-200 rounded-[2.5rem] transform rotate-3 scale-105 opacity-50 blur-xl animate-pulse" />
-              <img 
-                src="/profile.jpg" 
-                alt="Wani Bisen" 
-                className="w-72 h-80 md:w-72 md:h-[400px] lg:w-80 lg:h-[420px] object-cover rounded-[2.5rem] shadow-2xl border-4 border-white relative z-10"
-              />
-            </div>
-          </motion.div>
-        </div>
-      </header>
-      
-      <main className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 pb-16 pt-0 relative z-10">
-        
-        {/* Projects Section - NOW FIRST */}
-        <section id="projects" className="mb-16">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="p-3 rounded-2xl bg-[#FADBD8]/30 border border-[#D97B66]/20 shadow-sm">
-              <Code className="text-[#D97B66]" size={28} />
-            </div>
-            <h2 className="text-4xl font-black text-slate-900">Product Portfolio</h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-            {projects.map((proj, idx) => (
-              <motion.div 
-                key={idx}
-                whileHover={{ y: -8 }}
-                className="p-6 md:p-10 rounded-2xl md:rounded-3xl bg-white border border-[#FADBD8]/50 shadow-xl shadow-[#D97B66]/5 hover:border-[#D97B66]/30 transition-all group relative overflow-hidden flex flex-col"
-              >
-                <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity pointer-events-none">
-                  <Code size={80} className="text-[#D97B66]" />
-                </div>
-                <div className="flex justify-between items-start mb-6 md:mb-8 relative z-10">
-                  <h3 className="text-xl md:text-2xl font-bold text-slate-900 group-hover:text-[#D97B66] transition-colors pr-4">
-                    {proj.title}
-                  </h3>
-                  {proj.link ? (
-                    <a 
-                      href={proj.link} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 hover:bg-[#FADBD8]/50 text-slate-600 hover:text-[#D97B66] transition-all font-bold text-sm shrink-0 border border-transparent hover:border-[#D97B66]/20 relative z-10"
-                    >
-                      <span className="hidden sm:inline tracking-wide">View Project</span>
-                      <ExternalLink size={18} strokeWidth={2.5} />
-                    </a>
-                  ) : (
-                    <ExternalLink size={20} className="text-slate-300" />
-                  )}
-                </div>
-                <p className="text-slate-600 mb-10 leading-relaxed text-lg">
-                  {proj.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {proj.tags.map((tag, i) => (
-                    <span key={i} className="px-4 py-1.5 rounded-full bg-[#FADBD8]/10 text-xs font-bold text-[#D97B66] border border-[#D97B66]/10">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
-        {/* My Approach Section - NOW SECOND */}
-        <section id="approach" className="mb-16">
-          <div className="mb-8">
-            <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight">How I Build Products</h2>
-            <p className="text-xl text-slate-500 font-medium mt-4">Core principles driving my product leadership.</p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-4 md:gap-6">
-            <div className="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-white border border-[#FADBD8]/50 shadow-sm hover:shadow-xl hover:shadow-[#D97B66]/5 transition-all">
-              <h3 className="text-xl font-bold text-slate-900 mb-2 md:mb-3 tracking-tight">Outcomes over features</h3>
-              <p className="text-slate-500 leading-relaxed text-sm md:text-base">Technology alone isn't a product. AI systems only succeed when they natively solve defined business problems and integrate into real workflows.</p>
-            </div>
-            <div className="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-white border border-[#FADBD8]/50 shadow-sm hover:shadow-xl hover:shadow-[#D97B66]/5 transition-all">
-              <h3 className="text-xl font-bold text-slate-900 mb-2 md:mb-3 tracking-tight">Bridging the chasm</h3>
-              <p className="text-slate-500 leading-relaxed text-sm md:text-base">I translate raw technical constraints into clear go-to-market strategies, enabling executive leadership to make informed technology investments.</p>
-            </div>
-            <div className="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-white border border-[#FADBD8]/50 shadow-sm hover:shadow-xl hover:shadow-[#D97B66]/5 transition-all">
-              <h3 className="text-xl font-bold text-slate-900 mb-2 md:mb-3 tracking-tight">Designing for scale</h3>
-              <p className="text-slate-500 leading-relaxed text-sm md:text-base">Rooted in a computer science foundation, I prioritize system architecture and data integrity equally alongside the front-end user experience.</p>
-            </div>
-            <div className="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-white border border-[#FADBD8]/50 shadow-sm hover:shadow-xl hover:shadow-[#D97B66]/5 transition-all">
-              <h3 className="text-xl font-bold text-slate-900 mb-2 md:mb-3 tracking-tight">Navigating ambiguity</h3>
-              <p className="text-slate-500 leading-relaxed text-sm md:text-base">Shaping emerging technologies into market-ready products requires structured, systematic thinking—honed through executing massive 0-to-1 product launches.</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Experience Section */}
-        <section id="experience" className="mb-16">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="p-3 rounded-2xl bg-[#FADBD8]/30 border border-[#D97B66]/20 shadow-sm">
-              <Briefcase className="text-[#D97B66]" size={28} />
-            </div>
-            <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight">Leadership & Experience</h2>
-          </div>
-          
-          <div className="space-y-6">
-            {experience.map((exp, idx) => (
-              <motion.div 
-                key={idx}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-white/90 backdrop-blur-sm border border-[#FADBD8]/40 shadow-lg shadow-[#D97B66]/5 hover:shadow-xl transition-all group"
-              >
-                <div className="flex flex-col md:flex-row md:items-center justify-between mb-5">
-                  <div>
-                    <h3 className="text-xl md:text-2xl font-black text-slate-900">{exp.role}</h3>
-                    <p className="text-[#D97B66] font-bold text-base md:text-lg">{exp.company}</p>
-                  </div>
-                  <span className="text-sm font-bold text-slate-400 bg-slate-100 px-4 py-1.5 rounded-full mt-2 md:mt-0 shrink-0">
-                    {exp.period}
-                  </span>
-                </div>
-                <ul className="space-y-3">
-                  {exp.highlights.map((h, i) => (
-                    <li key={i} className="flex gap-3 text-slate-600 leading-relaxed text-base">
-                      <ChevronRight size={20} className="text-[#D97B66]/50 shrink-0 mt-0.5" />
-                      <span>{h}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
-        {/* Contact Section */}
-        <section id="contact" className="pt-8 md:pt-12">
-          <div className="p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] bg-white border border-[#FADBD8]/50 shadow-2xl shadow-[#D97B66]/10 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#FADBD8]/10 rounded-full -mr-32 -mt-32 opacity-50 pointer-events-none" />
-            <div className="relative z-10">
-              <div className="flex items-center gap-4 mb-3">
-                <div className="p-2.5 rounded-xl bg-[#FADBD8]/30 border border-[#D97B66]/20 shadow-sm">
-                  <Mail className="text-[#D97B66]" size={24} />
-                </div>
-                <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight">Let's connect.</h2>
-              </div>
-              <p className="text-lg text-slate-500 mb-8 font-medium ml-1">
-                Looking to build or scale products? Drop me a message below.
-              </p>
-
-              <form onSubmit={handleContact} className="space-y-8">
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div className="space-y-3">
-                    <label className="text-sm font-bold text-slate-500 ml-1">Name</label>
-                    <input 
-                      required
-                      name="name"
-                      type="text" 
-                      className="w-full px-6 py-4 rounded-2xl bg-[#FADBD8]/5 border border-[#FADBD8]/20 focus:border-[#D97B66]/50 focus:ring-4 focus:ring-[#D97B66]/10 outline-none transition-all text-slate-900 font-medium"
-                      placeholder="John Doe"
-                    />
-                  </div>
-                  <div className="space-y-3">
-                    <label className="text-sm font-bold text-slate-500 ml-1">Email</label>
-                    <input 
-                      required
-                      name="email"
-                      type="email" 
-                      className="w-full px-6 py-4 rounded-2xl bg-[#FADBD8]/5 border border-[#FADBD8]/20 focus:border-[#D97B66]/50 focus:ring-4 focus:ring-[#D97B66]/10 outline-none transition-all text-slate-900 font-medium"
-                      placeholder="john@example.com"
-                    />
-                  </div>
-                </div>
-                <div className="space-y-3">
-                  <label className="text-sm font-bold text-slate-500 ml-1">Message</label>
-                  <textarea 
-                    required
-                    name="message"
-                    rows={4}
-                    className="w-full px-6 py-4 rounded-2xl bg-[#FADBD8]/5 border border-[#FADBD8]/20 focus:border-[#D97B66]/50 focus:ring-4 focus:ring-[#D97B66]/10 outline-none transition-all text-slate-900 font-medium resize-none"
-                    placeholder="Tell me about your project..."
-                  />
-                </div>
-                
-                <button 
-                  disabled={formStatus === "submitting"}
-                  className="w-full md:w-auto px-10 py-5 rounded-2xl bg-[#D97B66] hover:bg-[#C06552] text-white font-black text-lg flex items-center justify-center gap-3 transition-all shadow-lg shadow-[#D97B66]/30 disabled:opacity-50"
-                >
-                  {formStatus === "submitting" ? (
-                    <motion.div 
-                      animate={{ rotate: 360 }}
-                      transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
-                      className="w-6 h-6 border-3 border-white border-t-transparent rounded-full"
-                    />
-                  ) : (
-                    <>
-                      <span>Send Message</span>
-                      <Send size={20} />
-                    </>
-                  )}
-                </button>
-
-                <AnimatePresence>
-                  {formStatus === "success" && (
-                    <motion.div 
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0 }}
-                      className="flex items-center gap-3 text-green-700 bg-green-50 p-6 rounded-2xl border border-green-100 font-bold"
-                    >
-                      <CheckCircle2 size={24} />
-                      <span>Message sent successfully! I'll get back to you soon.</span>
-                    </motion.div>
-                  )}
-                  {formStatus === "error" && (
-                    <motion.div 
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0 }}
-                      className="flex items-center gap-3 text-red-700 bg-red-50 p-6 rounded-2xl border border-red-100 font-bold"
-                    >
-                      <AlertCircle size={24} />
-                      <span>Something went wrong. Please try again or email me directly.</span>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </form>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      {/* Footer */}
-      <footer className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16 border-t border-[#FADBD8]/50 text-center text-slate-400 text-sm font-medium relative z-10">
-        <p className="max-w-xs mx-auto md:max-w-full leading-relaxed">© {new Date().getFullYear()} Wani Bisen. Built with Node.js, Supabase, and Resend.</p>
-      </footer>
+    <div style={{ background: "var(--bg)", color: "var(--ink)", fontFamily: "var(--sans)", minHeight: "100vh" }}>
+      <Nav />
+      <Hero />
+      <CredStrip />
+      <Metrics />
+      <hr style={S.rule} />
+      <Portfolio projects={projects} />
+      <hr style={S.rule} />
+      <Experience experience={experience} />
+      <Contact />
+      <Footer />
     </div>
   );
 }
