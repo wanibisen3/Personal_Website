@@ -138,7 +138,7 @@ function Hero() {
         >
           I'm Wani Bisen — a product leader who{" "}
           <strong style={{ color: "var(--ink)", fontWeight: 600 }}>builds at the frontier of AI, data systems, and business strategy</strong>.
-          {" "}I speak fluent engineer and fluent executive. INSEAD &amp; Wharton MBA, CS foundation, 8 years across global tech companies.
+          {" "}I speak fluent engineer and fluent executive. INSEAD &amp; Wharton MBA, CS foundation, with a proven track record across global tech companies.
         </motion.p>
 
         <motion.div
@@ -380,9 +380,9 @@ function Experience({ experience }: { experience: Experience[] }) {
     <section id="experience" className="section-padding" style={{ position: "relative", zIndex: 1 }}>
       <div className="app-container">
         <p style={S.sectionLabel}>Career</p>
-        <h2 style={S.sectionTitle}>8 years of building.</h2>
+        <h2 style={S.sectionTitle}>Deliberate Trajectory.</h2>
         <p style={{ fontSize: "1.1rem", color: "var(--ink-mid)", maxWidth: 560, lineHeight: 1.65 }}>
-          From quality engineering to senior SDE to product leadership — a deliberate progression from technical depth to strategic breadth.
+          From software engineering to senior SDE to product leadership — a deliberate progression from technical depth to strategic breadth.
         </p>
 
         <div style={{ marginTop: "3rem" }}>
