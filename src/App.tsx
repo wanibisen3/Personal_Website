@@ -181,10 +181,14 @@ function Hero() {
       <style>{`
         .hero-grid { display: flex; flex-direction: column; min-height: 90vh; }
         .hero-image-container { min-height: 45vh; }
-        @media (min-width: 720px) {
+        @media (min-width: 800px) {
           .hero-grid { flex-direction: row; align-items: stretch; }
-          .hero-text-container { flex: 1.2; padding-left: calc(max((100vw - 1120px) / 2, var(--pad))); }
-          .hero-image-container { flex: 1; min-height: auto; }
+          .hero-text-container { 
+            flex: 1.2; 
+            padding-left: calc(max((100vw - var(--max)) / 2, 0px) + var(--pad));
+            padding-right: 3rem;
+          }
+          .hero-image-container { flex: 0.9; min-height: auto; }
         }
       `}</style>
     </section>
@@ -450,7 +454,7 @@ function Contact() {
 
   return (
     <div id="contact" style={{ background: "var(--bg-dark)", padding: "clamp(4rem, 10vh, 8rem) 0", position: "relative", zIndex: 1 }}>
-      <div className="app-container contact-grid" style={{ padding: "0 var(--pad)" }}>
+      <div className="app-container" style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: "3rem" }}>
         <div>
           <h2 style={{
             fontFamily: "var(--serif)", fontSize: "clamp(2.5rem, 5vw, 4rem)", lineHeight: 1.1,
@@ -483,10 +487,10 @@ function Footer() {
     <footer style={{
       background: "var(--bg-dark)",
       borderTop: "1px solid oklch(22% 0.01 250)",
-      padding: "2rem clamp(1.5rem, 5vw, 4rem)",
+      padding: "2rem 0",
       position: "relative", zIndex: 1,
     }}>
-      <div style={{ maxWidth: 1080, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
+      <div style={{ maxWidth: "var(--max)", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
         <span style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: "0.95rem", color: "oklch(55% 0.01 250)" }}>Wani Bisen</span>
         <span style={{ fontSize: "0.78rem", color: "oklch(40% 0.01 250)" }}>Open to Senior PM, Head of Product roles</span>
       </div>
